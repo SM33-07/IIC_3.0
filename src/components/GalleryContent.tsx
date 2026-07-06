@@ -92,9 +92,7 @@ const GalleryContent: React.FC = () => {
     { image: "/20241115_224002.jpg", text: "Development" },
     { image: "/20241115_224201.jpg", text: "Mentorship" },
     { image: "/20241116_122330.jpg", text: "Hackathon Day" },
-    { image: "/IMG_0001.jpeg", text: "Presentations" },
     { image: "/IMG_1930.JPG", text: "Judging Round" },
-    { image: "/IMG_2016.JPG", text: "Main Stage" },
     { image: "/IMG_2025.JPG", text: "Winning Teams" }
   ];
 
@@ -116,7 +114,7 @@ const GalleryContent: React.FC = () => {
         </div>
 
         {/* WebGL Interactive Hero Showcase */}
-        <div className="w-full h-[450px] mb-20 rounded-2xl overflow-hidden glass-card relative z-20 animate-on-scroll">
+        <div className="w-full h-[450px] mb-20 rounded-2xl overflow-hidden relative z-20 animate-on-scroll">
           <CircularGallery items={circularItems} bend={3} textColor="#2dd4bf" borderRadius={0.05} />
         </div>
 
