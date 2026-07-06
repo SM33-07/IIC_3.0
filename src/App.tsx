@@ -6,6 +6,8 @@ import Gallery from './pages/Gallery';
 import JudgesMentors from './pages/JudgesMentors';
 import Guests from './pages/Guests';
 import ProblemStatements from './pages/ProblemStatements';
+import TimelinePage from './pages/TimelinePage';
+
 function App() {
   return (
     <Router>
@@ -17,6 +19,7 @@ function App() {
         <Route path="/judges-mentors" element={<JudgesMentors />} />
         <Route path="/guests" element={<Guests />} />
         <Route path="/problem-statements" element={<ProblemStatements />} />
+        <Route path="/timeline" element={<TimelinePage />} />
       </Routes>
     </Router>
   );

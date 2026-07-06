@@ -147,7 +147,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
           key={i}
           onMouseMove={handleCardMove}
           onClick={() => handleCardClick(c.url)}
-          className="group relative flex flex-col w-[300px] rounded-[20px] overflow-hidden border-2 border-transparent hover:border-[var(--card-border)] transition-all duration-300 cursor-pointer shadow-xl relative z-20"
+          className="group relative flex flex-col w-[300px] rounded-[20px] overflow-hidden border-2 border-transparent hover:border-[var(--card-border)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 cursor-pointer shadow-xl relative z-20"
           style={
             {
               '--card-border': c.borderColor || 'transparent',
@@ -160,14 +160,14 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
         >
           {/* Hover background gradient overlay */}
           <div
-            className="absolute inset-0 transition-opacity duration-500 z-0 opacity-0 group-hover:opacity-100"
+            className="absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] z-0 opacity-0 group-hover:opacity-100"
             style={{
               background: c.gradient || 'transparent'
             }}
           />
 
           <div
-            className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-20 opacity-0 group-hover:opacity-100"
+            className="absolute inset-0 pointer-events-none transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] z-20 opacity-0 group-hover:opacity-100"
             style={{
               background:
                 'radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%)'
@@ -177,7 +177,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
           {/* Social Links inside the card, at the top right */}
           {(c.github || c.instagram || c.linkedin) && (
             <div 
-              className="absolute top-3 right-3 z-30 flex gap-2 p-1.5 bg-black/60 backdrop-blur-md rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="absolute top-3 right-3 z-30 flex gap-2 p-1.5 bg-black/60 backdrop-blur-md rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
               onClick={(e) => e.stopPropagation()}
             >
               {c.github && (
