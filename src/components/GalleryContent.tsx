@@ -6,6 +6,7 @@ import Carousel, { CarouselItem } from './Carousel';
 
 const GalleryContent: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'iic2' | 'iic'>('iic2');
 
   // Present IIC (2024 Edition) images
   const iicImages = [
@@ -186,41 +187,80 @@ const GalleryContent: React.FC = () => {
     { image: "/iic2/DSC01115.jpg", text: "Keynote (IIC 2.0)" }
   ];
 
-  // 3D Carousel items for transition experience
-  const carouselItems: CarouselItem[] = [
+  // IIC 2.0 Highlights for Carousel
+  const carouselItemsIic2: CarouselItem[] = [
     {
       id: 1,
-      title: "IIC 2.0 Highlights",
-      description: "Celebrating outstanding innovative products and awards.",
+      title: "Registration & Welcome",
+      description: "Getting ready for IIC 2.0.",
+      image: "/iic2/DSC00721.jpg",
+      icon: <Layers className="h-4 w-4 text-teal-400" />
+    },
+    {
+      id: 2,
+      title: "Interactive Discussion",
+      description: "Audience asking questions during the panels.",
+      image: "/iic2/DSC00802.jpg",
+      icon: <Layout className="h-4 w-4 text-teal-400" />
+    },
+    {
+      id: 3,
+      title: "Main Stage Presentation",
+      description: "Showcasing projects to the panel of judges.",
+      image: "/iic2/DSC01115.jpg",
+      icon: <Circle className="h-4 w-4 text-teal-400" />
+    },
+    {
+      id: 4,
+      title: "Closing Ceremonies",
+      description: "Distribution of awards to the hackathon winners.",
       image: "/iic2/DSC01941.jpg",
+      icon: <FileText className="h-4 w-4 text-teal-400" />
+    },
+    {
+      id: 5,
+      title: "Worthy Winners",
+      description: "Outstanding teams celebrating their victory.",
+      image: "/iic2/DSC02007.jpg",
+      icon: <Code className="h-4 w-4 text-teal-400" />
+    }
+  ];
+
+  // IIC 1.0 Highlights for Carousel
+  const carouselItemsIic: CarouselItem[] = [
+    {
+      id: 1,
+      title: "IIC Inauguration",
+      description: "Lighting the ceremonial lamp to kick off the event.",
+      image: "/20241115_101932.jpg",
       icon: <Layers className="h-4 w-4 text-teal-400" />
     },
     {
       id: 2,
       title: "Night Hackathon Phase",
-      description: "Working relentlessly through the coding hours.",
+      description: "Working relentlessly through the midnight coding hours.",
       image: "/20241115_224002.jpg",
       icon: <Code className="h-4 w-4 text-teal-400" />
     },
     {
       id: 3,
-      title: "Distinguished Panels",
-      description: "Experts sharing panel discussion insights.",
-      image: "/iic2/DSC00802.jpg",
+      title: "Expert Mentorship",
+      description: "Mentors checking progress and giving strategies.",
+      image: "/20241115_224201.jpg",
       icon: <Layout className="h-4 w-4 text-teal-400" />
     },
     {
       id: 4,
       title: "Jury Judgements",
-      description: "Mentors evaluating solutions at the tables.",
+      description: "Mentors evaluating solutions at the work desks.",
       image: "/IMG_1930.JPG",
       icon: <Circle className="h-4 w-4 text-teal-400" />
     },
     {
       id: 5,
-      title: "Valedictory Ceremony",
-      description: "Declaring the winners on the grand stage.",
-      image: "/iic2/DSC01115.jpg",
+      title: "Core Teams Group",
+      description: "Celebrating the hard work of all participants.",
+      image: "/IMG_2025.JPG",
       icon: <FileText className="h-4 w-4 text-teal-400" />
     }
   ];
@@ -247,96 +287,95 @@ const GalleryContent: React.FC = () => {
           <CircularGallery items={circularItems} bend={3} textColor="#2dd4bf" borderRadius={0.05} />
         </div>
 
-        {/* IIC 2.0 SECTION */}
-        <section className="mb-20">
-          <div className="flex flex-col items-center mb-10 text-center animate-on-scroll">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">IIC 2.0 Gallery</h2>
-            <div className="w-16 h-0.5 bg-gradient-to-r from-teal-400 to-sky-400"></div>
-          </div>
-
-          <motion.div 
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 grid-flow-row-dense"
-          >
-            {iic2Images.map((image, index) => (
-              <motion.div
-                layout
-                key={index}
-                className={`group relative overflow-hidden rounded-xl cursor-pointer glass-card hover:glass-card transition-all duration-300 ${
-                  image.featured ? 'md:col-span-2 md:row-span-2 h-[544px]' : 'col-span-1 row-span-1 h-64'
-                }`}
-                whileHover={{ y: -6, scale: 1.02 }}
-                onClick={() => setSelectedImage(image.url)}
-              >
-                <img
-                  src={image.url}
-                  alt={image.title}
-                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <h3 className="text-white font-bold text-xl gradient-text">{image.title}</h3>
-                  <p className="text-gray-300">{image.year}</p>
-                </div>
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-gradient-to-br from-teal-500/20 to-emerald-600/20 p-2 rounded-full backdrop-blur-sm">
-                    <Camera className="h-5 w-5 text-teal-400" />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-
-        {/* 3D Highlight Carousel Section (Acts as a transition divider) */}
-        <div className="w-full flex flex-col items-center justify-center my-24 py-12 border-y border-white/5 bg-white/[0.01] relative z-20 animate-on-scroll">
-          <div className="text-center mb-8">
-            <span className="text-teal-400 font-bold uppercase tracking-widest text-xs mb-1 block">Quick Sneak Peek</span>
-            <h3 className="text-xl md:text-2xl font-bold text-white">Event Highlights</h3>
-          </div>
-          <div className="max-w-full flex justify-center overflow-x-hidden">
-            <Carousel items={carouselItems} baseWidth={500} autoplay={true} autoplayDelay={3500} pauseOnHover={true} loop={true} />
+        {/* Tab Switcher Buttons */}
+        <div className="flex justify-center mb-12 animate-on-scroll relative z-30">
+          <div className="flex p-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/10 shadow-xl">
+            <button
+              onClick={() => setActiveTab('iic2')}
+              className={`px-8 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-500 ${
+                activeTab === 'iic2'
+                  ? 'bg-gradient-to-r from-teal-400 to-sky-400 text-black shadow-md scale-105'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              IIC 2.0 (2025)
+            </button>
+            <button
+              onClick={() => setActiveTab('iic')}
+              className={`px-8 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-500 ${
+                activeTab === 'iic'
+                  ? 'bg-gradient-to-r from-teal-400 to-sky-400 text-black shadow-md scale-105'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              IIC (2024)
+            </button>
           </div>
         </div>
 
-        {/* IIC 1.0 SECTION */}
-        <section className="mb-20">
-          <div className="flex flex-col items-center mb-10 text-center animate-on-scroll">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">IIC Gallery</h2>
-            <div className="w-16 h-0.5 bg-gradient-to-r from-teal-400 to-sky-400"></div>
-          </div>
-
-          <motion.div 
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 grid-flow-row-dense"
+        {/* Active Section Content with Framer Motion Switch */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            {iicImages.map((image, index) => (
-              <motion.div
-                layout
-                key={index}
-                className={`group relative overflow-hidden rounded-xl cursor-pointer glass-card hover:glass-card transition-all duration-300 ${
-                  image.featured ? 'md:col-span-2 md:row-span-2 h-[544px]' : 'col-span-1 row-span-1 h-64'
-                }`}
-                whileHover={{ y: -6, scale: 1.02 }}
-                onClick={() => setSelectedImage(image.url)}
-              >
-                <img
-                  src={image.url}
-                  alt={image.title}
-                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+            {/* Carousel Showcase for active tab */}
+            <div className="w-full flex flex-col items-center justify-center mb-16 py-10 border-y border-white/5 bg-white/[0.01] relative z-20">
+              <div className="text-center mb-6">
+                <span className="text-teal-400 font-bold uppercase tracking-widest text-xs mb-1 block">Highlight Showcase</span>
+                <h3 className="text-xl font-bold text-white">
+                  {activeTab === 'iic2' ? 'IIC 2.0 Highlights' : 'IIC Highlights'}
+                </h3>
+              </div>
+              <div className="max-w-full flex justify-center overflow-x-hidden">
+                <Carousel 
+                  items={activeTab === 'iic2' ? carouselItemsIic2 : carouselItemsIic} 
+                  baseWidth={500} 
+                  autoplay={true} 
+                  autoplayDelay={3500} 
+                  pauseOnHover={true} 
+                  loop={true} 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <h3 className="text-white font-bold text-xl gradient-text">{image.title}</h3>
-                  <p className="text-gray-300">{image.year}</p>
-                </div>
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-gradient-to-br from-teal-500/20 to-emerald-600/20 p-2 rounded-full backdrop-blur-sm">
-                    <Camera className="h-5 w-5 text-teal-400" />
+              </div>
+            </div>
+
+            {/* Quilted Grid for active tab */}
+            <motion.div 
+              layout
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 grid-flow-row-dense"
+            >
+              {(activeTab === 'iic2' ? iic2Images : iicImages).map((image, index) => (
+                <motion.div
+                  layout
+                  key={index}
+                  className={`group relative overflow-hidden rounded-xl cursor-pointer glass-card hover:glass-card transition-all duration-300 ${
+                    image.featured ? 'md:col-span-2 md:row-span-2 h-[544px]' : 'col-span-1 row-span-1 h-64'
+                  }`}
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  onClick={() => setSelectedImage(image.url)}
+                >
+                  <img
+                    src={image.url}
+                    alt={image.title}
+                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h3 className="text-white font-bold text-xl gradient-text">{image.title}</h3>
+                    <p className="text-gray-300">{image.year}</p>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="bg-gradient-to-br from-teal-500/20 to-emerald-600/20 p-2 rounded-full backdrop-blur-sm">
+                      <Camera className="h-5 w-5 text-teal-400" />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
-        </section>
+        </AnimatePresence>
 
         {/* Full Image Modal Viewer */}
         <AnimatePresence>
