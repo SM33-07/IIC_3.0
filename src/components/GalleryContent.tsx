@@ -118,6 +118,19 @@ const GalleryContent: React.FC = () => {
           <CircularGallery items={circularItems} bend={3} textColor="#2dd4bf" borderRadius={0.05} />
         </div>
 
+        {/* Partition Divider */}
+        <div className="relative my-16 animate-on-scroll">
+          <div className="absolute inset-0 flex items-center" aria-hidden="true">
+            <div className="w-full border-t border-white/10"></div>
+          </div>
+          <div className="relative flex justify-center">
+            <span className="bg-[#030712] px-6 text-sm text-gray-400 uppercase tracking-widest font-semibold flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
+              All Memories
+            </span>
+          </div>
+        </div>
+
         {/* Masonry Grid */}
         <motion.div 
           layout
