@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
+import { Github, Instagram, Linkedin } from 'lucide-react';
 
 
 export interface ChromaItem {
