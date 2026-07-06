@@ -76,6 +76,9 @@ const Hero: React.FC = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
+            {/* Soft teal glow backdrop (Layer 6 finish) */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/20 to-sky-500/15 rounded-[2.5rem] blur-2xl -z-10 pointer-events-none animate-pulse" style={{ animationDuration: '6s' }}></div>
+
             <div className="relative z-10 glass-card p-8 rounded-2xl">
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-full opacity-20 blur-xl -z-10"></div>
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-br from-sky-400 to-teal-600 rounded-full opacity-20 blur-xl -z-10"></div>
