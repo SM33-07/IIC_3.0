@@ -40,7 +40,7 @@ const IntroWrapper: React.FC = () => {
     <div className="min-h-screen relative space-bg text-white overflow-hidden font-mono">
       
       {/* Glowing Particles */}
-      <GlowingParticles maxParticles = {50}/>
+      <GlowingParticles />
 
       {showIntro && (
         <div

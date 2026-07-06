@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { Code, Lightbulb, Users, Trophy, Sparkles } from 'lucide-react';
+import { Terminal, Globe, GraduationCap, Gem, Sparkles } from 'lucide-react';
+import AuroraText from './AuroraText';
 
 const About: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -16,34 +17,34 @@ const About: React.FC = () => {
       { threshold: 0.1 }
     );
 
-    const elementsToAnimate = sectionRef.current?.querySelectorAll('.animate-on-scroll');
-    elementsToAnimate?.forEach((el) => observer.observe(el));
+    const animatedElements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
+    animatedElements?.forEach((el) => observer.observe(el));
 
     return () => {
-      elementsToAnimate?.forEach((el) => observer.unobserve(el));
+      animatedElements?.forEach((el) => observer.unobserve(el));
     };
   }, []);
 
   const features = [
     {
-      icon: <Code className="h-8 w-8 text-teal-400" />,
-      title: "Code with Purpose",
-      description: "Build innovative solutions that address real-world challenges across various domains."
+      icon: <Terminal className="h-6 w-6 text-teal-400" />,
+      title: "36-Hour Hackathon",
+      description: "Build robust prototypes from scratch under tight deadlines, tackling critical problem statements."
     },
     {
-      icon: <Lightbulb className="h-8 w-8 text-sky-400" />,
-      title: "Learn & Grow",
-      description: "Expand your skills through workshops, mentorship sessions, and hands-on experience."
+      icon: <Globe className="h-6 w-6 text-teal-400" />,
+      title: "Conference & Expo",
+      description: "Attend panels and display your research findings at our global startup carnival and tech exhibitions."
     },
     {
-      icon: <Users className="h-8 w-8 text-emerald-400" />,
-      title: "Connect & Collaborate",
-      description: "Network with fellow developers, designers, and industry professionals."
+      icon: <GraduationCap className="h-6 w-6 text-teal-400" />,
+      title: "Global Mentorship",
+      description: "Receive direct, one-on-one evaluations and engineering tips from industry experts and veterans."
     },
     {
-      icon: <Trophy className="h-8 w-8 text-amber-400" />,
-      title: "Win Big",
-      description: "Compete for substantial prizes and recognition for your innovative solutions."
+      icon: <Gem className="h-6 w-6 text-teal-400" />,
+      title: "Grand Prize Pools",
+      description: "Compete for cash rewards, incubation support, sponsor track bounties, and international trophies."
     }
   ];
 
@@ -54,8 +55,8 @@ const About: React.FC = () => {
           <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4 animate-on-scroll opacity-0">
             <Sparkles className="h-8 w-8 text-teal-400" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-on-scroll opacity-0">
-            About <span className="gradient-text">IIC 3.0</span>
+          <h2 className="animate-on-scroll opacity-0 mb-4">
+            <AuroraText className="text-4xl md:text-5xl font-bold uppercase tracking-wider">About IIC 3.0</AuroraText>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto mb-6"></div>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto animate-on-scroll opacity-0 leading-relaxed">
@@ -66,7 +67,7 @@ const About: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <div 
               key={index} 

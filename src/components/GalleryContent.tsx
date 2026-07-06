@@ -1,12 +1,14 @@
-import React, { useState } from 'react';  
-import { Camera, X, Layers, Code, Layout, Circle, FileText } from 'lucide-react';
+import React, { useState, useEffect } from 'react';  
+import { Camera, X, Layers, Code, Layout, Circle, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import CircularGallery from './CircularGallery';
+import { ScrollVelocityContainer, ScrollVelocityRow } from './magicui/scroll-based-velocity';
 import Carousel, { CarouselItem } from './Carousel';
+import AuroraText from './AuroraText';
 
 const GalleryContent: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'iic2' | 'iic'>('iic2');
+  const [layoutMode, setLayoutMode] = useState<'quilt' | 'grid'>('quilt');
 
   // Present IIC (2024 Edition) images
   const iicImages = [
@@ -92,99 +94,38 @@ const GalleryContent: React.FC = () => {
 
   // New IIC 2.0 (2025 Edition) images
   const iic2Images = [
-    {
-      url: "/iic2/DSC00721.jpg",
-      title: "Registration & Networking",
-      year: "2025",
-      featured: true
-    },
-    {
-      url: "/iic2/DSC00788.jpg",
-      title: "Mentorship Connect",
-      year: "2025"
-    },
-    {
-      url: "/iic2/DSC00802.jpg",
-      title: "Inaugural Panel",
-      year: "2025",
-      featured: true
-    },
-    {
-      url: "/iic2/DSC00840.jpg",
-      title: "Audience Q&A",
-      year: "2025"
-    },
-    {
-      url: "/iic2/DSC00964.jpg",
-      title: "Mentorship Session",
-      year: "2025"
-    },
-    {
-      url: "/iic2/DSC01091.jpg",
-      title: "Interactive Stage",
-      year: "2025"
-    },
-    {
-      url: "/iic2/DSC01098.jpg",
-      title: "Expert Guidance",
-      year: "2025"
-    },
-    {
-      url: "/iic2/DSC01115.jpg",
-      title: "Main Ceremony Stage",
-      year: "2025",
-      featured: true
-    },
-    {
-      url: "/iic2/DSC01205.jpg",
-      title: "Judging Rounds",
-      year: "2025"
-    },
-    {
-      url: "/iic2/DSC01568.jpg",
-      title: "Team Presentation",
-      year: "2025"
-    },
-    {
-      url: "/iic2/DSC01786.jpg",
-      title: "Project Review",
-      year: "2025"
-    },
-    {
-      url: "/iic2/DSC01802.jpg",
-      title: "Valedictory Ceremony",
-      year: "2025"
-    },
-    {
-      url: "/iic2/DSC01941.jpg",
-      title: "Prize Distribution",
-      year: "2025"
-    },
-    {
-      url: "/iic2/DSC02007.jpg",
-      title: "Winning Teams 2.0",
-      year: "2025"
-    },
-    {
-      url: "/iic2/IMG_9769-Enhanced-NR.jpg",
-      title: "Inauguration IIC 2.0",
-      year: "2025"
-    },
-    {
-      url: "/iic2/IMG_9864-Enhanced-NR.jpg",
-      title: "Hackathon Dev Start",
-      year: "2025"
-    }
-  ];
-
-  // Circular gallery contains top 3 photos from IIC and top 3 from IIC 2.0
-  const circularItems = [
-    { image: "/20241115_101932.jpg", text: "Inauguration (IIC)" },
-    { image: "/20241115_224201.jpg", text: "Mentorship (IIC)" },
-    { image: "/IMG_1930.JPG", text: "Jury Evaluation (IIC)" },
-    { image: "/iic2/DSC00721.jpg", text: "Welcome (IIC 2.0)" },
-    { image: "/iic2/DSC00802.jpg", text: "Discussion (IIC 2.0)" },
-    { image: "/iic2/DSC01115.jpg", text: "Keynote (IIC 2.0)" }
+    { url: "/iic2/DSC00721.jpg", title: "Registration & Welcome", year: "2025", featured: true },
+    { url: "/iic2/DSC00788.jpg", title: "Mentorship Session", year: "2025" },
+    { url: "/iic2/DSC00802.jpg", title: "Panel Discussion", year: "2025", featured: true },
+    { url: "/iic2/DSC00840.jpg", title: "Audience Q&A", year: "2025" },
+    { url: "/iic2/DSC00964.jpg", title: "Technical Mentorship", year: "2025" },
+    { url: "/iic2/DSC01091.jpg", title: "Grand Ceremony Stage", year: "2025" },
+    { url: "/iic2/DSC01098.jpg", title: "Expert Support", year: "2025" },
+    { url: "/iic2/DSC01115.jpg", title: "Main Event Presentations", year: "2025", featured: true },
+    { url: "/iic2/DSC01205.jpg", title: "Jury Judgements", year: "2025" },
+    { url: "/iic2/DSC01568.jpg", title: "Pitching Round", year: "2025" },
+    { url: "/iic2/DSC01786.jpg", title: "Working Prototypes", year: "2025" },
+    { url: "/iic2/DSC01802.jpg", title: "Closing Addresses", year: "2025" },
+    { url: "/iic2/DSC01941.jpg", title: "Award Distribution", year: "2025" },
+    { url: "/iic2/DSC02007.jpg", title: "Winners Group", year: "2025" },
+    { url: "/iic2/DSC02050.jpg", title: "Hackathon Dev Work", year: "2025" },
+    { url: "/iic2/DSC02071.jpg", title: "Inaugural Addresses", year: "2025" },
+    { url: "/iic2/DSC09525.jpg", title: "Valedictory Highlights", year: "2025", featured: true },
+    { url: "/iic2/DSC09541.jpg", title: "Team Pitching", year: "2025" },
+    { url: "/iic2/DSC09548.jpg", title: "Jury Discussion", year: "2025" },
+    { url: "/iic2/DSC09567.jpg", title: "Speaker Keynote", year: "2025" },
+    { url: "/iic2/DSC09571.jpg", title: "Mentors Connect", year: "2025" },
+    { url: "/iic2/DSC09580.jpg", title: "Innovative Prototypes", year: "2025" },
+    { url: "/iic2/HTP09710.jpg", title: "Inauguration Lights", year: "2025", featured: true },
+    { url: "/iic2/HTP09730.jpg", title: "Lamp Lighting Ceremony", year: "2025" },
+    { url: "/iic2/IMG_0004-Enhanced-NR.jpg", title: "Development Phase", year: "2025" },
+    { url: "/iic2/IMG_0006-Enhanced-NR.jpg", title: "Team Collaboration", year: "2025" },
+    { url: "/iic2/IMG_0009-Enhanced-NR.jpg", title: "Prototype Testing", year: "2025" },
+    { url: "/iic2/IMG_0015-Enhanced-NR.jpg", title: "Jury Evaluation", year: "2025" },
+    { url: "/iic2/IMG_9769-Enhanced-NR.jpg", title: "Registration Desk", year: "2025" },
+    { url: "/iic2/IMG_9864-Enhanced-NR.jpg", title: "Hackathon Start", year: "2025" },
+    { url: "/iic2/IMG_9872-Enhanced-NR.jpg", title: "Coding Session 2.0", year: "2025" },
+    { url: "/iic2/IMG_9997-Enhanced-NR.jpg", title: "Winner Celebrations", year: "2025", featured: true }
   ];
 
   // IIC 2.0 Highlights for Carousel
@@ -265,30 +206,106 @@ const GalleryContent: React.FC = () => {
     }
   ];
 
+  const activeImages = activeTab === 'iic2' ? iic2Images : iicImages;
+
+  const handleNextImage = () => {
+    if (selectedIndex === null) return;
+    setSelectedIndex((selectedIndex + 1) % activeImages.length);
+  };
+
+  const handlePrevImage = () => {
+    if (selectedIndex === null) return;
+    setSelectedIndex((selectedIndex - 1 + activeImages.length) % activeImages.length);
+  };
+
+  useEffect(() => {
+    if (selectedIndex === null) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') handleNextImage();
+      if (e.key === 'ArrowLeft') handlePrevImage();
+      if (e.key === 'Escape') setSelectedIndex(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedIndex, activeImages]);
+
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  };
+
   return (
     <div className="min-h-screen space-bg">
       <main className="container mx-auto px-4 py-20">
         {/* Gallery Header */}
-        <div className="text-center mb-16">
-          <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4 animate-on-scroll">
-            <Camera className="h-8 w-8 text-teal-400" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            <span className="gradient-text">Event Gallery</span>
+        <div className="text-center mb-16 animate-on-scroll">
+          <h1 className="mb-4">
+            <AuroraText className="text-5xl md:text-7xl font-black uppercase tracking-wider">Event Gallery</AuroraText>
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto mb-6"></div>
+          <div className="w-32 h-1 bg-gradient-to-r from-teal-400 via-sky-400 to-emerald-400 mx-auto mb-6 rounded-full shadow-[0_0_8px_rgba(45,212,191,0.5)]"></div>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Relive the memorable moments, interactive workshops, and hackathon spirit from IIC editions.
           </p>
         </div>
 
-        {/* WebGL Interactive Hero Showcase */}
-        <div className="w-full h-[450px] mb-20 rounded-2xl overflow-hidden relative z-20 animate-on-scroll">
-          <CircularGallery items={circularItems} bend={3} textColor="#2dd4bf" borderRadius={0.05} />
+        {/* Magic UI Scroll-Based Velocity Marquee Hero Showcase */}
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-14 mb-20 rounded-2xl bg-black/20 border border-white/5 backdrop-blur-md relative z-20 animate-on-scroll min-h-[500px]">
+          <ScrollVelocityContainer className="w-full">
+            <ScrollVelocityRow baseVelocity={2.5} direction={1} className="py-3">
+              {iic2Images.slice(0, 8).map((img, idx) => (
+                <div 
+                  key={idx} 
+                  onClick={() => { setActiveTab('iic2'); setSelectedIndex(idx); }}
+                  className="mx-4 relative group overflow-hidden rounded-2xl h-48 w-72 md:h-56 md:w-80 border border-white/10 shadow-xl cursor-pointer"
+                  style={{ willChange: 'transform' }}
+                >
+                  <img
+                    src={img.url}
+                    alt={img.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                    style={{ willChange: 'transform' }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-[10px] text-teal-400 font-bold uppercase tracking-wider mb-0.5">IIC 2.0 (2025)</span>
+                    <span className="text-white text-sm font-semibold truncate">{img.title}</span>
+                  </div>
+                </div>
+              ))}
+            </ScrollVelocityRow>
+            
+            <ScrollVelocityRow baseVelocity={2.5} direction={-1} className="py-3">
+              {iicImages.slice(0, 8).map((img, idx) => (
+                <div 
+                  key={idx} 
+                  onClick={() => { setActiveTab('iic'); setSelectedIndex(idx); }}
+                  className="mx-4 relative group overflow-hidden rounded-2xl h-48 w-72 md:h-56 md:w-80 border border-white/10 shadow-xl cursor-pointer"
+                  style={{ willChange: 'transform' }}
+                >
+                  <img
+                    src={img.url}
+                    alt={img.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                    style={{ willChange: 'transform' }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-[10px] text-teal-400 font-bold uppercase tracking-wider mb-0.5">IIC (2024)</span>
+                    <span className="text-white text-sm font-semibold truncate">{img.title}</span>
+                  </div>
+                </div>
+              ))}
+            </ScrollVelocityRow>
+          </ScrollVelocityContainer>
+
+          <div className="from-[#020617] via-transparent to-[#020617] pointer-events-none absolute inset-0 z-30 bg-gradient-to-r opacity-50"></div>
         </div>
 
         {/* Tab Switcher Buttons */}
-        <div className="flex justify-center mb-12 animate-on-scroll relative z-30">
+        <div className="flex flex-col items-center gap-4 mb-12 animate-on-scroll relative z-30">
           <div className="flex p-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/10 shadow-xl">
             <button
               onClick={() => setActiveTab('iic2')}
@@ -309,6 +326,30 @@ const GalleryContent: React.FC = () => {
               }`}
             >
               IIC (2024)
+            </button>
+          </div>
+
+          {/* Segmented Layout Mode Switcher */}
+          <div className="flex p-1 bg-white/5 backdrop-blur-md rounded-full border border-white/5 shadow-md">
+            <button
+              onClick={() => setLayoutMode('quilt')}
+              className={`px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all duration-300 ${
+                layoutMode === 'quilt'
+                  ? 'bg-teal-500/20 text-teal-400 border border-teal-500/20'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Quilted Collage
+            </button>
+            <button
+              onClick={() => setLayoutMode('grid')}
+              className={`px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all duration-300 ${
+                layoutMode === 'grid'
+                  ? 'bg-teal-500/20 text-teal-400 border border-teal-500/20'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Symmetrical Grid
             </button>
           </div>
         </div>
@@ -333,7 +374,8 @@ const GalleryContent: React.FC = () => {
               <div className="max-w-full flex justify-center overflow-x-hidden">
                 <Carousel 
                   items={activeTab === 'iic2' ? carouselItemsIic2 : carouselItemsIic} 
-                  baseWidth={500} 
+                  baseWidth={1112} 
+                  baseHeight={646}
                   autoplay={true} 
                   autoplayDelay={3500} 
                   pauseOnHover={true} 
@@ -342,67 +384,111 @@ const GalleryContent: React.FC = () => {
               </div>
             </div>
 
-            {/* Quilted Grid for active tab */}
+            {/* Quilted or Symmetrical Grid for active tab */}
             <motion.div 
               layout
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 grid-flow-row-dense"
             >
-              {(activeTab === 'iic2' ? iic2Images : iicImages).map((image, index) => (
-                <motion.div
-                  layout
-                  key={index}
-                  className={`group relative overflow-hidden rounded-xl cursor-pointer glass-card hover:glass-card transition-all duration-300 ${
-                    image.featured ? 'md:col-span-2 md:row-span-2 h-[544px]' : 'col-span-1 row-span-1 h-64'
-                  }`}
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  onClick={() => setSelectedImage(image.url)}
-                >
-                  <img
-                    src={image.url}
-                    alt={image.title}
-                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <h3 className="text-white font-bold text-xl gradient-text">{image.title}</h3>
-                    <p className="text-gray-300">{image.year}</p>
-                  </div>
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-gradient-to-br from-teal-500/20 to-emerald-600/20 p-2 rounded-full backdrop-blur-sm">
-                      <Camera className="h-5 w-5 text-teal-400" />
+              {activeImages.map((image, index) => {
+                const isFeatured = layoutMode === 'quilt' && image.featured;
+                return (
+                  <motion.div
+                    layout
+                    key={index}
+                    onMouseMove={handleCardMouseMove}
+                    className={`group relative overflow-hidden rounded-xl cursor-pointer border border-white/5 hover:border-teal-500/40 shadow-xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      isFeatured ? 'md:col-span-2 md:row-span-2 h-[544px]' : 'col-span-1 row-span-1 h-64'
+                    }`}
+                    style={
+                      {
+                        background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.01), rgba(11, 22, 44, 0.8))',
+                        backdropFilter: 'blur(12px)',
+                        WebkitBackdropFilter: 'blur(12px)'
+                      } as React.CSSProperties
+                    }
+                    whileHover={{ y: -6, scale: 1.015 }}
+                    onClick={() => setSelectedIndex(index)}
+                  >
+                    {/* Spotlight glow layer inside card */}
+                    <div
+                      className="absolute inset-0 pointer-events-none transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 group-hover:opacity-100 z-10"
+                      style={{
+                        background: 'radial-gradient(circle 200px at var(--mouse-x) var(--mouse-y), rgba(45, 212, 191, 0.15), transparent 85%)'
+                      }}
+                    />
+
+                    <img
+                      src={image.url}
+                      alt={image.title}
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 z-20">
+                      <h3 className="text-white font-bold text-xl gradient-text">{image.title}</h3>
+                      <p className="text-gray-300">{image.year}</p>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                      <div className="bg-gradient-to-br from-teal-500/20 to-emerald-600/20 p-2 rounded-full backdrop-blur-sm">
+                        <Camera className="h-5 w-5 text-teal-400" />
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </motion.div>
         </AnimatePresence>
 
-        {/* Full Image Modal Viewer */}
+        {/* Full Image Slideshow Lightbox Viewer */}
         <AnimatePresence>
-          {selectedImage && (
+          {selectedIndex !== null && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4 backdrop-blur-md"
-              onClick={() => setSelectedImage(null)}
+              onClick={() => setSelectedIndex(null)}
             >
+              {/* Left Arrow Button */}
+              <button
+                onClick={handlePrevImage}
+                className="absolute left-6 md:left-12 p-3 rounded-full bg-black/60 border border-white/10 text-white hover:bg-teal-400 hover:text-black hover:scale-110 transition-all duration-300 cursor-pointer shadow-2xl z-50"
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={24} />
+              </button>
+
+              {/* Right Arrow Button */}
+              <button
+                onClick={handleNextImage}
+                className="absolute right-6 md:right-12 p-3 rounded-full bg-black/60 border border-white/10 text-white hover:bg-teal-400 hover:text-black hover:scale-110 transition-all duration-300 cursor-pointer shadow-2xl z-50"
+                aria-label="Next image"
+              >
+                <ChevronRight size={24} />
+              </button>
+
               <motion.div 
                 initial={{ scale: 0.9, y: 20 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.9, y: 20 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                className="relative max-w-4xl w-full"
+                className="relative max-w-4xl w-full flex flex-col items-center"
                 onClick={(e) => e.stopPropagation()}
               >
                 <img
-                  src={selectedImage}
-                  alt="Selected"
-                  className="w-full h-auto max-h-[85vh] object-contain rounded-xl shadow-2xl border border-teal-500/20"
+                  src={activeImages[selectedIndex].url}
+                  alt={activeImages[selectedIndex].title}
+                  className="w-full h-auto max-h-[80vh] object-contain rounded-xl shadow-2xl border border-teal-500/20"
                 />
+                
+                {/* Title overlay in Lightbox */}
+                <div className="mt-4 text-center">
+                  <h4 className="text-white font-bold text-lg">{activeImages[selectedIndex].title}</h4>
+                  <p className="text-gray-400 text-sm">Edition {activeImages[selectedIndex].year} • {selectedIndex + 1} of {activeImages.length}</p>
+                </div>
+
                 <button
                   className="absolute top-4 right-4 glass-card p-2 rounded-full text-white hover:text-teal-400 hover:scale-105 transition-all duration-300"
-                  onClick={() => setSelectedImage(null)}
+                  onClick={() => setSelectedIndex(null)}
                 >
                   <X className="h-6 w-6" />
                 </button>

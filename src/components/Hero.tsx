@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Zap, Calendar, MapPin, Rocket } from 'lucide-react';
-import GlowingParticles from './GlowingParticles';
-import Pdf from '/problem_statements.pdf'
+import { Calendar, MapPin, Rocket } from 'lucide-react';
+import Pdf from '/problem_statements.pdf';
+import AuroraText from './AuroraText';
+import TextType from './TextType';
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,8 +18,6 @@ const Hero: React.FC = () => {
       id="hero"
       className="relative min-h-screen pt-20 overflow-hidden space-bg flex items-center"
     >
-      {/* Glowing Particles */}
-      <GlowingParticles />
 
       {/* Floating geometric shapes */}
       <div className="floating-shapes"></div>
@@ -38,10 +37,20 @@ const Hero: React.FC = () => {
               </p>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-              <span className="gradient-text">IIC</span> <span className="text-teal-400">3.0</span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
+              <AuroraText className="text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-wider inline-block">IIC 3.0</AuroraText>
               <br />
-              <span className="text-3xl md:text-4xl lg:text-5xl text-sky-300">Innovation Unleashed</span>
+              <span className="text-3xl md:text-4xl lg:text-5xl text-sky-300 font-semibold tracking-normal block mt-2">
+                <TextType
+                  text={["Innovation Unleashed", "Collaborate & Code", "Build the Future", "Empower Ideas"]}
+                  typingSpeed={60}
+                  deletingSpeed={40}
+                  pauseDuration={2500}
+                  showCursor={true}
+                  cursorCharacter="▋"
+                  cursorClassName="text-teal-400 font-normal animate-pulse text-2xl md:text-3xl lg:text-4xl"
+                />
+              </span>
             </h1>
 
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
@@ -86,7 +95,7 @@ const Hero: React.FC = () => {
               {/* Hackathon Logo in Card */}
               <div className="text-center mb-6">
                 <div className="inline-block p-4 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4">
-                  <Zap className="h-8 w-8 text-teal-400" />
+                  <Rocket className="h-8 w-8 text-teal-400" />
                 </div>
                 <h3 className="gradient-text text-2xl font-bold mb-2">Get Ready!</h3>
                 <p className="text-gray-300">The future starts here</p>

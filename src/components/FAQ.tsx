@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import { ChevronDown, ChevronUp, MessageCircleQuestion } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import AuroraText from './AuroraText';
 
 interface FAQItem {
   question: string;
@@ -85,10 +86,10 @@ const FAQ: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4 animate-on-scroll opacity-0">
-            <HelpCircle className="h-8 w-8 text-teal-400" />
+            <MessageCircleQuestion className="h-8 w-8 text-teal-400" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-on-scroll opacity-0">
-            Frequently Asked <span className="gradient-text">Questions</span>
+          <h2 className="animate-on-scroll opacity-0 mb-4">
+            <AuroraText className="text-4xl md:text-5xl font-bold uppercase tracking-wider">Frequently Asked Questions</AuroraText>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto mb-6"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-on-scroll opacity-0">

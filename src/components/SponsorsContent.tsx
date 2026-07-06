@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Building, Crown } from 'lucide-react';
 import ChromaGrid, { ChromaItem } from './ChromaGrid';
+import AuroraText from './AuroraText';
 
 const SponsorsContent: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -148,8 +149,8 @@ const SponsorsContent: React.FC = () => {
           <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4 animate-on-scroll opacity-0">
             <Building className="h-8 w-8 text-teal-400" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-on-scroll opacity-0">
-            Our <span className="gradient-text">Sponsors</span>
+          <h1 className="animate-on-scroll opacity-0 mb-4">
+            <AuroraText className="text-4xl md:text-5xl font-bold uppercase tracking-wider">Our Sponsors</AuroraText>
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto mb-6"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-on-scroll opacity-0">

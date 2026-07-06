@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, FileText, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import AuroraText from './AuroraText';
 
 interface Problem {
   title: string;
@@ -254,7 +255,9 @@ const ProblemStatementsContent: React.FC = () => {
           <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4">
             <FileText className="h-8 w-8 text-teal-400" />
           </div>
-          <h1 className="text-4xl font-bold gradient-text mb-4">Problem Statements</h1>
+          <h1 className="mb-4">
+            <AuroraText className="text-4xl md:text-5xl font-bold uppercase tracking-wider">Problem Statements</AuroraText>
+          </h1>
           <p className="text-gray-300 text-lg max-w-3xl mx-auto">
             Choose from cutting-edge problem statements across various technological domains. Each challenge is designed to push the boundaries of innovation and create real-world impact.
           </p>

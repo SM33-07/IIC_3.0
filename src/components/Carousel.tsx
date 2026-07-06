@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, PanInfo, useMotionValue, useTransform } from 'framer-motion';
 import React, { JSX } from 'react';
-import { Circle, Code, FileText, Layers, Layout } from 'lucide-react';
+import { Circle, Code, FileText, Layers, Layout, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export interface CarouselItem {
   title: string;
@@ -14,6 +14,7 @@ export interface CarouselItem {
 export interface CarouselProps {
   items?: CarouselItem[];
   baseWidth?: number;
+  baseHeight?: number;
   autoplay?: boolean;
   autoplayDelay?: number;
   pauseOnHover?: boolean;
@@ -79,6 +80,9 @@ function CarouselItem({ item, index, itemWidth, round, trackItemOffset, x, trans
   const outputRange = [90, 0, -90];
   const rotateY = useTransform(x, range, outputRange, { clamp: false });
 
+  // Calculate parallax translation: shifts image left/right based on distance from center
+  const imgX = useTransform(x, range, [-80, 0, 80], { clamp: false });
+
   return (
     <motion.div
       key={`${item?.id ?? index}-${index}`}
@@ -91,18 +95,19 @@ function CarouselItem({ item, index, itemWidth, round, trackItemOffset, x, trans
       }}
       transition={transition}
     >
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img 
+      {/* Background Image with Parallax (scaled slightly to prevent showing edges) */}
+      <div className="absolute inset-0 z-0 scale-110 overflow-hidden">
+        <motion.img 
           src={item.image} 
           alt={item.title} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none" 
+          style={{ x: imgX }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 p-5 w-full h-full flex flex-col justify-between">
+      <div className="relative z-10 p-6 w-full h-full flex flex-col justify-between pointer-events-none">
         <div className="flex justify-between items-start">
           {item.icon && (
             <span className="flex h-[32px] w-[32px] items-center justify-center rounded-full bg-black/60 border border-white/10 backdrop-blur-sm">
@@ -122,6 +127,7 @@ function CarouselItem({ item, index, itemWidth, round, trackItemOffset, x, trans
 export default function Carousel({
   items = DEFAULT_ITEMS,
   baseWidth = 350,
+  baseHeight = 380,
   autoplay = false,
   autoplayDelay = 3000,
   pauseOnHover = false,
@@ -129,19 +135,25 @@ export default function Carousel({
   round = false
 }: CarouselProps): JSX.Element {
   const [width, setWidth] = useState(baseWidth);
+  const [height, setHeight] = useState(baseHeight);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 480) {
-        setWidth(Math.min(baseWidth, window.innerWidth - 32));
+      if (window.innerWidth < baseWidth + 32) {
+        const newWidth = window.innerWidth - 32;
+        setWidth(newWidth);
+        if (baseWidth > 0) {
+          setHeight((newWidth / baseWidth) * baseHeight);
+        }
       } else {
         setWidth(baseWidth);
+        setHeight(baseHeight);
       }
     };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [baseWidth]);
+  }, [baseWidth, baseHeight]);
 
   const containerPadding = 16;
   const itemWidth = width - containerPadding * 2;
@@ -254,6 +266,23 @@ export default function Carousel({
     });
   };
 
+  const handleNext = () => {
+    if (isAnimating) return;
+    const max = itemsForRender.length - 1;
+    setPosition(prev => {
+      const next = prev + 1;
+      return next > max ? (loop ? max : prev) : next;
+    });
+  };
+
+  const handlePrev = () => {
+    if (isAnimating) return;
+    setPosition(prev => {
+      const next = prev - 1;
+      return next < 0 ? (loop ? 0 : prev) : next;
+    });
+  };
+
   const dragProps = loop
     ? {}
     : {
@@ -274,15 +303,16 @@ export default function Carousel({
       }`}
       style={{
         width: `${width}px`,
-        height: round ? `${width}px` : '380px'
+        height: round ? `${width}px` : `${height}px`
       }}
     >
       <motion.div
-        className="flex h-[280px]"
+        className="flex"
         drag={isAnimating ? false : 'x'}
         {...dragProps}
         style={{
           width: itemWidth,
+          height: round ? itemWidth : `${height - 80}px`,
           gap: `${GAP}px`,
           perspective: 1000,
           perspectiveOrigin: `${position * trackItemOffset + itemWidth / 2}px 50%`,
@@ -307,6 +337,27 @@ export default function Carousel({
           />
         ))}
       </motion.div>
+
+      {/* Left and Right Navigation Arrows */}
+      {!round && items.length > 1 && (
+        <>
+          <button
+            onClick={handlePrev}
+            className="absolute left-8 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-black/60 border border-white/10 text-white hover:bg-teal-400 hover:text-black hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-8 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-black/60 border border-white/10 text-white hover:bg-teal-400 hover:text-black hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg"
+            aria-label="Next slide"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </>
+      )}
+
       <div className={`flex w-full justify-center ${round ? 'absolute z-20 bottom-12 left-1/2 -translate-x-1/2' : ''}`}>
         <div className="mt-4 flex w-[150px] justify-between px-8">
           {items.map((_, index) => (

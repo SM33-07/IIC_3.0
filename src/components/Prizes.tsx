@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { Trophy, Award, Star, Zap, Crown, Gift } from 'lucide-react';
+import { Trophy, Medal, Star, Zap, Crown } from 'lucide-react';
+import AuroraText from './AuroraText';
 
 const Prizes: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -39,7 +40,7 @@ const Prizes: React.FC = () => {
     },
     {
       position: "2nd Place",
-      icon: <Trophy className="h-12 w-12 text-gray-300" />,
+      icon: <Medal className="h-12 w-12 text-gray-300" />,
       prize: "₹50,000",
       gradient: "from-gray-300 via-gray-400 to-gray-500",
       benefits: [
@@ -50,7 +51,7 @@ const Prizes: React.FC = () => {
     },
     {
       position: "3rd Place",
-      icon: <Award className="h-12 w-12 text-amber-600" />,
+      icon: <Star className="h-12 w-12 text-amber-600" />,
       prize: "₹25,000",
       gradient: "from-amber-600 via-amber-700 to-amber-800",
       benefits: [
@@ -107,8 +108,8 @@ const Prizes: React.FC = () => {
           <div className="inline-block p-3 bg-gradient-to-br from-yellow-500/20 to-orange-600/20 rounded-full mb-4 animate-on-scroll opacity-0">
             <Trophy className="h-8 w-8 text-yellow-400" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-on-scroll opacity-0">
-            Prizes & <span className="gradient-text">Rewards</span>
+          <h2 className="animate-on-scroll opacity-0 mb-4">
+            <AuroraText className="text-4xl md:text-5xl font-bold uppercase tracking-wider">Prizes & Rewards</AuroraText>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto mb-6"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-on-scroll opacity-0">

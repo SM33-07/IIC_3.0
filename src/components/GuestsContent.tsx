@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Sparkles } from "lucide-react";
 import ChromaGrid, { ChromaItem } from "./ChromaGrid";
+import AuroraText from "./AuroraText";
 
 const GuestsContent: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -93,7 +94,9 @@ const GuestsContent: React.FC = () => {
             <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4">
               <Sparkles className="h-8 w-8 text-teal-400" />
             </div>
-            <h3 className="text-3xl font-bold gradient-text mb-2">Our Guests</h3>
+            <h3 className="mb-2">
+              <AuroraText className="text-3xl font-bold uppercase tracking-wider">Our Guests</AuroraText>
+            </h3>
             <div className="w-16 h-0.5 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto"></div>
           </div>
           
