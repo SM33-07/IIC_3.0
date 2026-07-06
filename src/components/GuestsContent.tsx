@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Sparkles } from "lucide-react";
+import ChromaGrid, { ChromaItem } from "./ChromaGrid";
 
 const GuestsContent: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -25,46 +26,62 @@ const GuestsContent: React.FC = () => {
     };
   }, []);
 
-  const guests = [
+  const guests: ChromaItem[] = [
     { 
-      icon: <img src="/guest1.png" alt="Guest 1" className="h-20 w-20 object-cover rounded-full" />, 
-      name: "Jai G. Singla",
-      designation: "Scientist Engineer SF, SAC-ISRO"
+      image: "/guest1.png", 
+      title: "Jai G. Singla",
+      subtitle: "Scientist Engineer SF, SAC-ISRO",
+      borderColor: "#2dd4bf",
+      gradient: "linear-gradient(145deg, rgba(13, 148, 136, 0.4), rgba(11, 22, 44, 0.75))"
     },
     { 
-      icon: <img src="/guest2.png" alt="Guest 2" className="h-20 w-20 object-cover rounded-full" />, 
-      name: "Arjun Kumar",
-      designation: "Associate Director & Scientist, DRDO"
+      image: "/guest2.png", 
+      title: "Arjun Kumar",
+      subtitle: "Associate Director & Scientist, DRDO",
+      borderColor: "#3b82f6",
+      gradient: "linear-gradient(145deg, rgba(37, 99, 235, 0.4), rgba(11, 22, 44, 0.75))"
     },
     { 
-      icon: <img src="/guest3.png" alt="Guest 3" className="h-20 w-20 object-cover rounded-full" />, 
-      name: "Jean Calleja Agius",
-      designation: "Head of ANatomy, University of Malta"
+      image: "/guest3.png", 
+      title: "Jean Calleja Agius",
+      subtitle: "Head of Anatomy, University of Malta",
+      borderColor: "#10b981",
+      gradient: "linear-gradient(145deg, rgba(4, 120, 87, 0.4), rgba(11, 22, 44, 0.75))"
     },
     { 
-      icon: <img src="/guest4.png" alt="Guest 4" className="h-20 w-20 object-cover rounded-full" />, 
-      name: "Ing. Carl James Debono",
-      designation: "Dean, University of Malta"
+      image: "/guest4.png", 
+      title: "Ing. Carl James Debono",
+      subtitle: "Dean, University of Malta",
+      borderColor: "#8b5cf6",
+      gradient: "linear-gradient(145deg, rgba(109, 40, 217, 0.4), rgba(11, 22, 44, 0.75))"
     },
     { 
-      icon: <img src="/guest5.png" alt="Guest 5" className="h-20 w-20 object-cover rounded-full" />, 
-      name: "Neville Calleja",
-      designation: "Chair, European Health Information Initiative, WHO"
+      image: "/guest5.png", 
+      title: "Neville Calleja",
+      subtitle: "Chair, European Health Information Initiative, WHO",
+      borderColor: "#ef4444",
+      gradient: "linear-gradient(145deg, rgba(185, 28, 28, 0.4), rgba(11, 22, 44, 0.75))"
     },
     { 
-      icon: <img src="/guest6.png" alt="Guest 6" className="h-20 w-20 object-cover rounded-full" />, 
-      name: "Lalit Garg",
-      designation: "Professor, University of Malta"
+      image: "/guest6.png", 
+      title: "Lalit Garg",
+      subtitle: "Professor, University of Malta",
+      borderColor: "#2dd4bf",
+      gradient: "linear-gradient(145deg, rgba(13, 148, 136, 0.4), rgba(11, 22, 44, 0.75))"
     },
     { 
-      icon: <img src="/guest7.png" alt="Guest 7" className="h-20 w-20 object-cover rounded-full" />, 
-      name: "Varadraj P. Gurupur",
-      designation: "Professor, University of Central Florida"
+      image: "/guest7.png", 
+      title: "Varadraj P. Gurupur",
+      subtitle: "Professor, University of Central Florida",
+      borderColor: "#3b82f6",
+      gradient: "linear-gradient(145deg, rgba(37, 99, 235, 0.4), rgba(11, 22, 44, 0.75))"
     },
     { 
-      icon: <img src="/guest8.png" alt="Guest 8" className="h-20 w-20 object-cover rounded-full" />, 
-      name: "Vincent Lopez",
-      designation: "CEO, Parker Health Inc., USA"
+      image: "/guest8.png", 
+      title: "Vincent Lopez",
+      subtitle: "CEO, Parker Health Inc., USA",
+      borderColor: "#10b981",
+      gradient: "linear-gradient(145deg, rgba(4, 120, 87, 0.4), rgba(11, 22, 44, 0.75))"
     },
   ];
 
@@ -79,23 +96,9 @@ const GuestsContent: React.FC = () => {
             <h3 className="text-3xl font-bold gradient-text mb-2">Our Guests</h3>
             <div className="w-16 h-0.5 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto"></div>
           </div>
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {guests.map((guest, i) => (
-              <div
-                key={i}
-                className="glass-card rounded-xl p-6 group relative overflow-hidden text-center"
-              >
-                <div className="flex items-center justify-center h-20 mb-4">
-                  {guest.icon}
-                </div>
-                <h4 className="text-white font-bold text-lg mb-2 group-hover:text-teal-400 transition-colors duration-300">
-                  {guest.name}
-                </h4>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {guest.designation}
-                </p>
-              </div>
-            ))}
+          
+          <div className="max-w-5xl mx-auto flex justify-center">
+            <ChromaGrid items={guests} radius={300} disableGrayscale={true} />
           </div>
         </div>
       </main>

@@ -31,7 +31,7 @@ const SponsorsContent: React.FC = () => {
       title: 'Unstop',
       subtitle: 'Co-Powered By',
       borderColor: '#2dd4bf',
-      gradient: 'linear-gradient(145deg, #0d9488, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(13, 148, 136, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true,
       url: 'https://unstop.com'
     }
@@ -43,7 +43,7 @@ const SponsorsContent: React.FC = () => {
       title: 'GeekforGeeks',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
-      gradient: 'linear-gradient(145deg, #d97706, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(217, 119, 6, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true,
       url: 'https://www.geeksforgeeks.org/'
     },
@@ -52,7 +52,7 @@ const SponsorsContent: React.FC = () => {
       title: 'DoIC MUJ',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
-      gradient: 'linear-gradient(145deg, #d97706, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(217, 119, 6, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true
     },
     {
@@ -60,7 +60,7 @@ const SponsorsContent: React.FC = () => {
       title: 'mlHealth360',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
-      gradient: 'linear-gradient(145deg, #d97706, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(217, 119, 6, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true
     },
     {
@@ -68,7 +68,7 @@ const SponsorsContent: React.FC = () => {
       title: 'E-Cell',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
-      gradient: 'linear-gradient(145deg, #d97706, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(217, 119, 6, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true
     },
     {
@@ -76,7 +76,7 @@ const SponsorsContent: React.FC = () => {
       title: 'AIC MUJ',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
-      gradient: 'linear-gradient(145deg, #d97706, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(217, 119, 6, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true
     },
     {
@@ -84,7 +84,7 @@ const SponsorsContent: React.FC = () => {
       title: 'TUF',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
-      gradient: 'linear-gradient(145deg, #d97706, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(217, 119, 6, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true
     }
   ];
@@ -95,7 +95,7 @@ const SponsorsContent: React.FC = () => {
       title: 'ISRO',
       subtitle: 'Problem Statements By',
       borderColor: '#3b82f6',
-      gradient: 'linear-gradient(145deg, #2563eb, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(37, 99, 235, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true,
       url: 'https://www.isro.gov.in/'
     },
@@ -104,7 +104,7 @@ const SponsorsContent: React.FC = () => {
       title: 'Mahindra',
       subtitle: 'Problem Statements By',
       borderColor: '#3b82f6',
-      gradient: 'linear-gradient(145deg, #2563eb, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(37, 99, 235, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true
     },
     {
@@ -112,7 +112,7 @@ const SponsorsContent: React.FC = () => {
       title: 'Talsmart',
       subtitle: 'Problem Statements By',
       borderColor: '#3b82f6',
-      gradient: 'linear-gradient(145deg, #2563eb, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(37, 99, 235, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true
     },
     {
@@ -120,7 +120,7 @@ const SponsorsContent: React.FC = () => {
       title: 'epam',
       subtitle: 'Problem Statements By',
       borderColor: '#3b82f6',
-      gradient: 'linear-gradient(145deg, #2563eb, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(37, 99, 235, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true
     },
     {
@@ -128,7 +128,7 @@ const SponsorsContent: React.FC = () => {
       title: 'RG Hospitals',
       subtitle: 'Problem Statements By',
       borderColor: '#3b82f6',
-      gradient: 'linear-gradient(145deg, #2563eb, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(37, 99, 235, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true
     },
     {
@@ -136,7 +136,7 @@ const SponsorsContent: React.FC = () => {
       title: 'DRDO',
       subtitle: 'Problem Statements By',
       borderColor: '#3b82f6',
-      gradient: 'linear-gradient(145deg, #2563eb, #000000)',
+      gradient: 'linear-gradient(145deg, rgba(37, 99, 235, 0.4), rgba(11, 22, 44, 0.75))',
       isLogo: true
     }
   ];
@@ -167,7 +167,7 @@ const SponsorsContent: React.FC = () => {
               </div>
 
               <div className="flex justify-center">
-                <ChromaGrid items={coPoweredItems} radius={250} />
+                <ChromaGrid items={coPoweredItems} className="flex justify-center flex-wrap gap-8" radius={250} />
               </div>
             </div>
           </div>

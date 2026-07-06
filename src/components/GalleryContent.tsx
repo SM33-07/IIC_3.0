@@ -1,6 +1,7 @@
 import React, { useState } from 'react';  
 import { Camera, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import CircularGallery from './CircularGallery';
 
 const GalleryContent: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -9,7 +10,8 @@ const GalleryContent: React.FC = () => {
     {
       url: "/20241115_101932.jpg",
       title: "IIC",
-      year: "2024"
+      year: "2024",
+      featured: true
     },
     {
       url: "/20241115_224002.jpg",
@@ -34,7 +36,8 @@ const GalleryContent: React.FC = () => {
     {
       url: "/IMG_1930.JPG",
       title: "IIC",
-      year: "2024"
+      year: "2024",
+      featured: true
     },
     {
       url: "/IMG_2016.JPG",
@@ -59,7 +62,8 @@ const GalleryContent: React.FC = () => {
     {
       url: "/IMG_2094.JPG",
       title: "IIC",
-      year: "2024"
+      year: "2024",
+      featured: true
     },
     {
       url: "/IMG_2121.JPG",
@@ -83,9 +87,21 @@ const GalleryContent: React.FC = () => {
     }
   ];
 
+  const circularItems = [
+    { image: "/20241115_101932.jpg", text: "Inauguration" },
+    { image: "/20241115_224002.jpg", text: "Development" },
+    { image: "/20241115_224201.jpg", text: "Mentorship" },
+    { image: "/20241116_122330.jpg", text: "Hackathon Day" },
+    { image: "/IMG_0001.jpeg", text: "Presentations" },
+    { image: "/IMG_1930.JPG", text: "Judging Round" },
+    { image: "/IMG_2016.JPG", text: "Main Stage" },
+    { image: "/IMG_2025.JPG", text: "Winning Teams" }
+  ];
+
   return (
     <div className="min-h-screen space-bg">
       <main className="container mx-auto px-4 py-20">
+        {/* Gallery Header */}
         <div className="text-center mb-16">
           <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4 animate-on-scroll">
             <Camera className="h-8 w-8 text-teal-400" />
@@ -99,22 +115,30 @@ const GalleryContent: React.FC = () => {
           </p>
         </div>
 
+        {/* WebGL Interactive Hero Showcase */}
+        <div className="w-full h-[450px] mb-20 rounded-2xl overflow-hidden glass-card relative z-20 animate-on-scroll">
+          <CircularGallery items={circularItems} bend={3} textColor="#2dd4bf" borderRadius={0.05} />
+        </div>
+
+        {/* Masonry Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 grid-flow-row-dense"
         >
           {images.map((image, index) => (
             <motion.div
               layout
               key={index}
-              className="group relative overflow-hidden rounded-xl cursor-pointer glass-card hover:glass-card transition-all duration-300"
+              className={`group relative overflow-hidden rounded-xl cursor-pointer glass-card hover:glass-card transition-all duration-300 ${
+                image.featured ? 'md:col-span-2 md:row-span-2 h-[544px]' : 'col-span-1 row-span-1 h-64'
+              }`}
               whileHover={{ y: -6, scale: 1.02 }}
               onClick={() => setSelectedImage(image.url)}
             >
               <img
                 src={image.url}
                 alt={image.title}
-                className="w-full h-64 object-cover transform transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                 <h3 className="text-white font-bold text-xl gradient-text">{image.title}</h3>

@@ -32,35 +32,50 @@ const JudgesMentorsContent: React.FC = () => {
       title: "Kushal Vijay",
       subtitle: "Software Engineer, Microsoft",
       borderColor: "#3b82f6",
-      gradient: "linear-gradient(145deg, #1d4ed8, #000000)"
+      gradient: "linear-gradient(145deg, rgba(29, 78, 216, 0.4), rgba(11, 22, 44, 0.75))",
+      github: "https://github.com/kushalvijay",
+      linkedin: "https://linkedin.com/in/kushalvijay",
+      instagram: "https://instagram.com/kushalvijay"
     },
     {
       image: "/judge2.png",
       title: "Swati Maurya",
       subtitle: "Software Engineer, Amazon",
       borderColor: "#10b981",
-      gradient: "linear-gradient(145deg, #047857, #000000)"
+      gradient: "linear-gradient(145deg, rgba(4, 120, 87, 0.4), rgba(11, 22, 44, 0.75))",
+      github: "https://github.com",
+      linkedin: "https://linkedin.com",
+      instagram: "https://instagram.com"
     },
     {
       image: "/mentor1.png",
       title: "Aditi Gupta",
       subtitle: "CEO, TechTip24",
       borderColor: "#f59e0b",
-      gradient: "linear-gradient(145deg, #b45309, #000000)"
+      gradient: "linear-gradient(145deg, rgba(180, 83, 9, 0.4), rgba(11, 22, 44, 0.75))",
+      github: "https://github.com",
+      linkedin: "https://linkedin.com",
+      instagram: "https://instagram.com"
     },
     {
       image: "/mentor2.png",
       title: "Bhagirath Giri",
       subtitle: "Director, WsCube Tech",
       borderColor: "#ef4444",
-      gradient: "linear-gradient(145deg, #b91c1c, #000000)"
+      gradient: "linear-gradient(145deg, rgba(185, 28, 28, 0.4), rgba(11, 22, 44, 0.75))",
+      github: "https://github.com",
+      linkedin: "https://linkedin.com",
+      instagram: "https://instagram.com"
     },
     {
       image: "/mentor3.png",
       title: "Sonam Chhikara",
       subtitle: "Associate, PwC Acceleration Centers",
       borderColor: "#8b5cf6",
-      gradient: "linear-gradient(145deg, #6d28d9, #000000)"
+      gradient: "linear-gradient(145deg, rgba(109, 40, 217, 0.4), rgba(11, 22, 44, 0.75))",
+      github: "https://github.com",
+      linkedin: "https://linkedin.com",
+      instagram: "https://instagram.com"
     }
   ];
 
@@ -80,7 +95,7 @@ const JudgesMentorsContent: React.FC = () => {
           </div>
 
           <div className="max-w-5xl mx-auto flex justify-center">
-            <ChromaGrid items={members} radius={300} />
+            <ChromaGrid items={members} radius={300} disableGrayscale={true} />
           </div>
         </div>
       </main>
