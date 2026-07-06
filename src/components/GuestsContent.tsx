@@ -73,11 +73,11 @@ const GuestsContent: React.FC = () => {
       <main className="container mx-auto px-4 py-20">
         <div className="animate-on-scroll opacity-0">
           <div className="text-center mb-12">
-            <div className="inline-block p-3 bg-gradient-to-br from-yellow-400/20 to-orange-500/20 rounded-full mb-4">
-              <Sparkles className="h-8 w-8 text-yellow-400" />
+            <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4">
+              <Sparkles className="h-8 w-8 text-teal-400" />
             </div>
             <h3 className="text-3xl font-bold gradient-text mb-2">Our Guests</h3>
-            <div className="w-16 h-0.5 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto"></div>
+            <div className="w-16 h-0.5 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto"></div>
           </div>
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
             {guests.map((guest, i) => (
@@ -88,7 +88,7 @@ const GuestsContent: React.FC = () => {
                 <div className="flex items-center justify-center h-20 mb-4">
                   {guest.icon}
                 </div>
-                <h4 className="text-white font-bold text-lg mb-2 group-hover:text-yellow-400 transition-colors duration-300">
+                <h4 className="text-white font-bold text-lg mb-2 group-hover:text-teal-400 transition-colors duration-300">
                   {guest.name}
                 </h4>
                 <p className="text-gray-400 text-sm leading-relaxed">

@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Building, Sparkles, Crown } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Pdf from '/IIC_DECK.pdf'
 
 const SponsorsContent: React.FC = () => {
@@ -125,15 +126,15 @@ const SponsorsContent: React.FC = () => {
     <div className="min-h-screen space-bg" ref={sectionRef}>
       <main className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
-          <div className="inline-block p-3 bg-gradient-to-br from-pink-500/20 to-purple-600/20 rounded-full mb-4 animate-on-scroll opacity-0">
-            <Building className="h-8 w-8 text-pink-400" />
+          <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4 animate-on-scroll opacity-0">
+            <Building className="h-8 w-8 text-teal-400" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-on-scroll opacity-0">
             Our <span className="gradient-text">Sponsors</span>
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-pink-400 to-cyan-400 mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto mb-6"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-on-scroll opacity-0">
-            IIC 2.0 is made possible by the generous support of our sponsors, who share our vision for innovation and technology advancement. Together, we're building the future of tech.
+            IIC 3.0 is made possible by the generous support of our sponsors, who share our vision for innovation and technology advancement. Together, we're building the future of tech.
           </p>
         </div>
 
@@ -143,21 +144,22 @@ const SponsorsContent: React.FC = () => {
             <div className="animate-on-scroll opacity-0" style={{ animationDelay: `0ms` }}>
               <div className="text-center mb-12">
                 <h3 className="text-3xl font-bold gradient-text mb-2">Co-Powered By</h3>
-                <div className="w-16 h-0.5 bg-gradient-to-r from-purple-400 to-indigo-500 mx-auto"></div>
+                <div className="w-16 h-0.5 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto"></div>
               </div>
 
               
               <div className={`grid gap-6 ${coPoweredBy.length === 1 ? 'grid-cols-1 justify-items-center' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
                 {coPoweredBy.map((partner, index) => (
-                  <div
+                  <motion.div
                     key={index}
-                    
-                    className="glass-card rounded-xl p-6 hover:glass-card transition-all duration-300 group relative overflow-hidden max-w-md"
+                    whileHover={{ y: -8, scale: 1.03, boxShadow: "0 15px 35px rgba(45, 212, 191, 0.15)" }}
+                    transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                    className="glass-card rounded-xl p-6 group relative overflow-hidden max-w-md cursor-pointer"
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-br from-purple-400 to-indigo-500 opacity-5 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                    <div className={`absolute inset-0 bg-gradient-to-br from-teal-400 to-sky-400 opacity-5 group-hover:opacity-10 transition-opacity duration-300`}></div>
                     <div className="relative z-10">
                       <div className="flex items-center justify-center h-20 mb-4">
-                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400/20 to-indigo-500/20 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-teal-400/20 to-sky-400/20 flex items-center justify-center">
                           {partner.icon ? (
                             partner.icon
                           ) : (
@@ -168,11 +170,11 @@ const SponsorsContent: React.FC = () => {
                           )}
                         </div>
                       </div>
-                      <h4 className="text-white font-bold text-lg mb-2 group-hover:text-purple-400 transition-colors duration-300 text-center">
+                      <h4 className="text-white font-bold text-lg mb-2 group-hover:text-teal-400 transition-colors duration-300 text-center">
                         {partner.name}
                       </h4>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -188,19 +190,21 @@ const SponsorsContent: React.FC = () => {
                   {tier.icon}
                 </div>
                 <h3 className="text-3xl font-bold gradient-text mb-2">{tier.tier}</h3>
-                <div className="w-16 h-0.5 bg-gradient-to-r from-pink-400 to-cyan-400 mx-auto"></div>
+                <div className="w-16 h-0.5 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto"></div>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {tier.sponsors.map((sponsor, sponsorIndex) => (
-                  <div
+                  <motion.div
                     key={sponsorIndex}
-                    className="glass-card rounded-xl p-6 hover:glass-card transition-all duration-300 group relative overflow-hidden"
+                    whileHover={{ y: -8, scale: 1.03, boxShadow: "0 15px 35px rgba(45, 212, 191, 0.15)" }}
+                    transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                    className="glass-card rounded-xl p-6 group relative overflow-hidden cursor-pointer"
                   >
                     <div className={`absolute inset-0 bg-gradient-to-br ${tier.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-300`}></div>
                     <div className="relative z-10">
                       <div className="flex items-center justify-center h-20 mb-4">
-                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-400/20 to-cyan-400/20 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-teal-400/20 to-sky-400/20 flex items-center justify-center">
                           {sponsor.icon ? (
                             sponsor.icon
                           ) : (
@@ -211,11 +215,11 @@ const SponsorsContent: React.FC = () => {
                           )}
                         </div>
                       </div>
-                      <h4 className="text-white font-bold text-lg mb-2 group-hover:text-pink-400 transition-colors duration-300 text-center">
+                      <h4 className="text-white font-bold text-lg mb-2 group-hover:text-teal-400 transition-colors duration-300 text-center">
                         {sponsor.name}
                       </h4>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>

@@ -1,40 +1,26 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState } from 'react';
+import { Calendar, Clock, ChevronDown, ChevronUp, Zap, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface TimelineEvent {
+  time: string;
+  title: string;
+  description: string;
+  details?: string;
+  highlight?: boolean;
+}
+
+interface DayTimeline {
   day: string;
   date: string;
-  events: Array<{
-    time: string;
-    title: string;
-    description: string;
-    highlight?: boolean;
-  }>;
+  events: TimelineEvent[];
 }
 
 const Timeline: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
+  const [activeDayIdx, setActiveDayIdx] = useState(0);
+  const [expandedEventIdx, setExpandedEventIdx] = useState<number | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elementsToAnimate = sectionRef.current?.querySelectorAll('.animate-on-scroll');
-    elementsToAnimate?.forEach((el) => observer.observe(el));
-
-    return () => {
-      elementsToAnimate?.forEach((el) => observer.unobserve(el));
-    };
-  }, []);
-
-  const timelineData: TimelineEvent[] = [
+  const timelineData: DayTimeline[] = [
     {
       day: "Day 1",
       date: "June 10, 2025",
@@ -42,33 +28,39 @@ const Timeline: React.FC = () => {
         {
           time: "09:00 AM",
           title: "Opening Ceremony",
-          description: "Kickoff event with keynote speakers and theme announcement"
+          description: "Kickoff event with keynote speakers and theme announcement.",
+          details: "Join us in the main auditorium to inaugurate the hackathon. We'll host our keynote speakers, introduce our expert mentors and judges panel, and announce the secret themes and guidelines for the challenge tracks."
         },
         {
           time: "10:30 AM",
-          title: "Team Formation",
-          description: "Find teammates and brainstorm project ideas"
+          title: "Team Formation & Brainstorming",
+          description: "Find teammates and brainstorm project ideas.",
+          details: "Collaborate with other developers, designers, and domain experts. If you registered solo, this session is perfect to pitch ideas and form a winning team of 2-4 members."
         },
         {
           time: "12:00 PM",
           title: "Lunch Break & Networking",
-          description: "Connect with sponsors and other participants"
+          description: "Connect with sponsors and other participants.",
+          details: "Refuel at our catering lounge while networking with representatives from top tier tech sponsors and community partners. Great place to get hardware tips or API resources."
         },
         {
           time: "01:00 PM",
           title: "Hacking Begins",
-          description: "Start working on your projects",
+          description: "Start working on your projects.",
+          details: "Hacking officially kicks off! Power up your systems, open your repositories, and start building. Access to designated developer zones will be open 24/7.",
           highlight: true
         },
         {
           time: "04:00 PM",
-          title: "Workshop: AI Integration",
-          description: "Learn how to incorporate AI into your projects"
+          title: "Workshop: AI & Cloud Integration",
+          description: "Learn how to incorporate AI into your projects.",
+          details: "Led by industry mentors, this workshop guides you on how to leverage cognitive services, local LLM integrations, and modern cloud deployment steps to scale your prototype."
         },
         {
           time: "08:00 PM",
-          title: "Dinner & Social Event",
-          description: "Casual networking and team building activities"
+          title: "Dinner & Social Mixer",
+          description: "Casual networking and team building activities.",
+          details: "Take a break, share food, and participate in micro-activities, fun trivia, and interactive games designed to ease hacking pressure."
         }
       ]
     },
@@ -79,33 +71,39 @@ const Timeline: React.FC = () => {
         {
           time: "09:00 AM",
           title: "Breakfast & Check-in",
-          description: "Morning refreshments and progress updates"
+          description: "Morning refreshments and progress updates.",
+          details: "Start the day fresh with hot coffee and breakfast. Mentors will do a morning walkthrough to inspect local workspaces and troubleshoot technical blocks."
         },
         {
           time: "10:00 AM",
           title: "Workshop: Pitch Perfect",
-          description: "Learn how to effectively present your project"
+          description: "Learn how to effectively present your project.",
+          details: "Led by professional presenters, this workshop covers slide deck structure, narrative building, and design workflows to pitch code models under 3 minutes."
         },
         {
           time: "12:00 PM",
-          title: "Mentor Sessions",
-          description: "One-on-one guidance from industry experts"
+          title: "One-on-One Mentor Sessions",
+          description: "One-on-one guidance from industry experts.",
+          details: "Book dedicated time slots with technical and design professionals to get constructive feedback on your app architecture, UI layouts, and domain fit."
         },
         {
           time: "03:00 PM",
           title: "Mid-Hackathon Checkpoint",
-          description: "Share progress and get feedback from mentors",
+          description: "Share progress and get feedback from mentors.",
+          details: "Teams must present their functional architecture for an intermediate code review. Essential for resolving pivots and validating current progress.",
           highlight: true
         },
         {
           time: "06:00 PM",
           title: "Dinner & Lightning Talks",
-          description: "Quick presentations on various tech topics"
+          description: "Quick presentations on various tech topics.",
+          details: "Grab dinner while developers deliver rapid-fire 5-minute talks sharing insights on web development, security, startup building, and design workflows."
         },
         {
           time: "08:00 PM",
           title: "Gaming Tournament",
-          description: "Take a break with some friendly competition"
+          description: "Take a break with some friendly competition.",
+          details: "Relax, play, and win goodies. Take your mind off the code for an hour and compete in esports, tabletop challenges, and arcade setups."
         }
       ]
     },
@@ -115,89 +113,223 @@ const Timeline: React.FC = () => {
       events: [
         {
           time: "09:00 AM",
-          title: "Final Breakfast",
-          description: "Last chance to refuel before the finish line"
+          title: "Final Breakfast & Prep",
+          description: "Last chance to refuel before the finish line.",
+          details: "Fuel up for the final stretch. Get your code polished, test deployments, resolve edge cases, and start preparing demo recordings."
         },
         {
           time: "12:00 PM",
           title: "Hacking Ends",
-          description: "All code submissions due",
+          description: "All code submissions due.",
+          details: "Hands off keyboards! Final code must be pushed to GitHub, and descriptions submitted on the portal. No exceptions will be made.",
           highlight: true
         },
         {
           time: "01:00 PM",
-          title: "Lunch & Preparation",
-          description: "Final touches on presentations"
+          title: "Lunch & Demo Sync",
+          description: "Final touches on presentations.",
+          details: "Re-hydrate and align layout views. Make sure all hardware demos are plugged in and cloud systems are responsive."
         },
         {
           time: "02:00 PM",
-          title: "Project Showcase",
-          description: "Demonstrations to judges and participants"
+          title: "Project Showcase & Expo",
+          description: "Demonstrations to judges and participants.",
+          details: "An expo-style setup where teams present their projects to visiting judges and peers. Be ready to explain your system architecture and code repository."
         },
         {
           time: "04:00 PM",
           title: "Judging & Deliberation",
-          description: "Judges evaluate projects based on criteria"
+          description: "Judges evaluate projects based on criteria.",
+          details: "The panel collates scores based on originality, technology implementation, utility value, and presentation. Top teams are shortlisted for final pitches."
         },
         {
           time: "06:00 PM",
           title: "Closing Ceremony & Awards",
-          description: "Winners announced and prizes awarded",
+          description: "Winners announced and prizes awarded.",
+          details: "The grand finale! Shortlisted pitches, sponsor awards, and top 3 trophies are presented. Network and snap group photos to end the event.",
           highlight: true
         }
       ]
     }
   ];
 
+  const handleDayChange = (idx: number) => {
+    setActiveDayIdx(idx);
+    setExpandedEventIdx(null);
+  };
+
+  const toggleExpandEvent = (idx: number) => {
+    setExpandedEventIdx(expandedEventIdx === idx ? null : idx);
+  };
+
   return (
-    <section id="schedule" ref={sectionRef} className="py-20 bg-gradient-to-b from-[#0a1931] to-[#1c2e5a]">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="schedule" className="py-24 space-bg relative overflow-hidden">
+      {/* Decorative Gradient Bulbs */}
+      <div className="absolute top-1/4 left-0 w-80 h-80 bg-teal-500/5 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-sky-500/5 rounded-full blur-3xl -z-10"></div>
+
+      <div className="container mx-auto px-4 md:px-6 z-10 relative">
+        
+        {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-on-scroll opacity-0">Event Schedule</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-[#4a2172] to-[#9d2449] mx-auto"></div>
-          <p className="mt-6 text-lg text-white/80 max-w-3xl mx-auto animate-on-scroll opacity-0">
-            48 hours of coding, learning, and innovation. Here's what to expect during TechHack 2025.
+          <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4">
+            <Calendar className="h-8 w-8 text-teal-400" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Event <span className="gradient-text">Schedule</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto mb-6"></div>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            36 hours of coding, networking, and expert workshops. Explore the full roadmap below.
           </p>
         </div>
 
-        <div className="flex overflow-x-auto pb-8 space-x-6 snap-x">
-          {timelineData.map((day, dayIndex) => (
-            <div 
-              key={dayIndex}
-              className="min-w-[300px] md:min-w-[380px] bg-[#11234a] rounded-xl p-6 flex-1 snap-start animate-on-scroll opacity-0"
-              style={{ animationDelay: `${dayIndex * 150}ms` }}
-            >
-              <div className="mb-6">
-                <span className="inline-block px-3 py-1 bg-[#301b47] text-white rounded-full text-sm font-medium">
-                  {day.day}
-                </span>
-                <h3 className="text-xl font-bold text-white mt-2">{day.date}</h3>
-              </div>
-
-              <div className="space-y-6">
-                {day.events.map((event, eventIndex) => (
-                  <div 
-                    key={eventIndex} 
-                    className={`relative pl-6 border-l-2 ${
-                      event.highlight ? 'border-[#9d2449]' : 'border-[#4a2172]'
-                    }`}
-                  >
-                    <div className={`absolute top-0 left-[-5px] w-2 h-2 rounded-full ${
-                      event.highlight ? 'bg-[#9d2449]' : 'bg-[#4a2172]'
-                    }`}></div>
-                    <span className={`text-sm font-medium ${
-                      event.highlight ? 'text-[#f5b7b1]' : 'text-white/60'
-                    }`}>
-                      {event.time}
-                    </span>
-                    <h4 className="text-white font-bold mt-1">{event.title}</h4>
-                    <p className="text-white/70 text-sm mt-1">{event.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+        {/* Day Switcher Tabs */}
+        <div className="flex justify-center mb-16 relative">
+          <div className="flex space-x-2 bg-slate-950/80 p-1.5 rounded-full border border-teal-500/10 backdrop-blur-md">
+            {timelineData.map((dayData, idx) => {
+              const isActive = activeDayIdx === idx;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => handleDayChange(idx)}
+                  className="relative px-6 py-2.5 rounded-full text-sm font-semibold transition-colors duration-300 focus:outline-none"
+                  style={{
+                    color: isActive ? '#030712' : '#9ca3af',
+                  }}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeDayTab"
+                      className="absolute inset-0 bg-gradient-to-r from-teal-400 to-sky-400 rounded-full"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center gap-1.5">
+                    <Sparkles className={`h-4 w-4 ${isActive ? 'text-gray-900' : 'text-teal-400/40'}`} />
+                    {dayData.day} ({dayData.date.split(',')[0]})
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
+
+        {/* Vertical Timeline List */}
+        <div className="max-w-4xl mx-auto relative">
+          {/* Central Connecting Progress Line */}
+          <div className="absolute left-4 md:left-1/2 top-2 bottom-2 w-0.5 transform -translate-x-1/2 bg-slate-800">
+            <motion.div 
+              className="w-full h-full bg-gradient-to-b from-teal-400 via-sky-400 to-emerald-400 origin-top"
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ duration: 1.5, ease: 'easeOut' }}
+            />
+          </div>
+
+          {/* Timeline Items */}
+          <motion.div 
+            key={activeDayIdx}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.15
+                }
+              }
+            }}
+            className="space-y-10"
+          >
+            {timelineData[activeDayIdx].events.map((event, eventIdx) => {
+              const isExpanded = expandedEventIdx === eventIdx;
+              const isEven = eventIdx % 2 === 0;
+
+              return (
+                <motion.div
+                  key={eventIdx}
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0, transition: { type: 'spring', bounce: 0.25 } }
+                  }}
+                  className={`flex flex-col md:flex-row relative items-start md:items-center ${
+                    isEven ? 'md:flex-row-reverse' : ''
+                  }`}
+                >
+                  {/* Event Time (Desktop Left/Right depending on odd/even, Mobile Left-indented) */}
+                  <div className="w-full md:w-1/2 px-8 flex md:justify-end items-center pl-12 md:pl-8">
+                    <div className={`flex items-center gap-2 text-sm font-bold text-sky-400/90 ${
+                      isEven ? 'md:flex-row-reverse md:text-left' : 'md:text-right'
+                    }`}>
+                      <Clock className="h-4 w-4" />
+                      <span>{event.time}</span>
+                    </div>
+                  </div>
+
+                  {/* Bullet Node on Vertical Line */}
+                  <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 z-10 flex items-center justify-center">
+                    {event.highlight ? (
+                      <div className="relative flex items-center justify-center">
+                        <span className="animate-ping absolute inline-flex h-6 w-6 rounded-full bg-teal-400 opacity-60"></span>
+                        <div className="h-4 w-4 rounded-full bg-teal-400 border-2 border-slate-950 flex items-center justify-center">
+                          <Zap className="h-2 w-2 text-slate-950 fill-slate-950" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="h-3 w-3 rounded-full bg-slate-800 border-2 border-teal-500 hover:bg-teal-500 transition-colors duration-300"></div>
+                    )}
+                  </div>
+
+                  {/* Event Detail Card */}
+                  <div className="w-full md:w-1/2 px-4 pl-12 md:pl-8">
+                    <div
+                      onClick={() => toggleExpandEvent(eventIdx)}
+                      className={`glass-card rounded-2xl p-6 cursor-pointer border transition-all duration-300 text-left ${
+                        event.highlight 
+                          ? 'border-teal-500/40 hover:border-teal-500/80 shadow-teal-950/20 shadow-md' 
+                          : 'border-slate-800 hover:border-teal-500/30'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start gap-4">
+                        <h4 className={`text-lg font-bold text-white transition-colors duration-300 ${
+                          event.highlight ? 'text-teal-300' : 'group-hover:text-teal-400'
+                        }`}>
+                          {event.title}
+                        </h4>
+                        <div className="p-1 bg-slate-950/40 rounded-full text-teal-400">
+                          {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                        </div>
+                      </div>
+
+                      <p className="text-gray-300 text-sm mt-2 leading-relaxed">
+                        {event.description}
+                      </p>
+
+                      <AnimatePresence initial={false}>
+                        {isExpanded && event.details && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                            animate={{ height: 'auto', opacity: 1, marginTop: 12 }}
+                            exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            className="overflow-hidden border-t border-teal-500/10 pt-3"
+                          >
+                            <p className="text-gray-400 text-sm leading-relaxed">
+                              {event.details}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+
       </div>
     </section>
   );

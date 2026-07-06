@@ -110,7 +110,7 @@ const Prizes: React.FC = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-on-scroll opacity-0">
             Prizes & <span className="gradient-text">Rewards</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-pink-400 to-cyan-400 mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto mb-6"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-on-scroll opacity-0">
             7L+ in cash prizes, plus invaluable opportunities, mentorship, and resources for winners.
           </p>
@@ -125,7 +125,7 @@ const Prizes: React.FC = () => {
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${prize.gradient} opacity-5`}></div>
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center bg-gradient-to-br from-pink-500/10 to-purple-600/10 p-4 rounded-full mb-6">
+                <div className="inline-flex items-center justify-center bg-gradient-to-br from-teal-500/10 to-emerald-600/10 p-4 rounded-full mb-6">
                   {prize.icon}
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">{prize.position}</h3>
@@ -133,7 +133,7 @@ const Prizes: React.FC = () => {
                 <ul className="space-y-3 text-left">
                   {prize.benefits.map((benefit, benefitIndex) => (
                     <li key={benefitIndex} className="flex items-start text-gray-300">
-                      <Zap className="h-5 w-5 mr-2 text-pink-400 flex-shrink-0 mt-0.5" />
+                      <Zap className="h-5 w-5 mr-2 text-teal-400 flex-shrink-0 mt-0.5" />
                       <span>{benefit}</span>
                     </li>
                   ))}

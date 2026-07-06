@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Search, FileText, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Problem {
   title: string;
@@ -213,26 +215,84 @@ const ProblemStatementsContent: React.FC = () => {
   };
 
   const categories = Object.keys(problemsByCategory);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const toggleProblemExpansion = (index: number) => {
     setExpandedProblem(expandedProblem === index ? null : index);
   };
 
+  // Perform category and search queries filters
+  const filteredData = (selectedCategory ? [selectedCategory] : categories)
+    .map((category) => {
+      const matchedProblems = problemsByCategory[category].map((p, idx) => {
+        // Calculate globalIndex for reference
+        const globalIdx = selectedCategory
+          ? idx
+          : Object.keys(problemsByCategory)
+              .slice(0, categories.indexOf(category))
+              .reduce((acc, cat) => acc + problemsByCategory[cat].length, 0) + idx;
+        return { ...p, globalIdx };
+      }).filter((problem) => {
+        const term = searchQuery.toLowerCase().trim();
+        if (!term) return true;
+        return (
+          problem.title.toLowerCase().includes(term) ||
+          problem.description.toLowerCase().includes(term)
+        );
+      });
+      return { category, problems: matchedProblems };
+    })
+    .filter((group) => group.problems.length > 0);
+
+  const totalFilteredCount = filteredData.reduce((acc, group) => acc + group.problems.length, 0);
+
   return (
     <div className="min-h-screen space-bg">
       <main className="container mx-auto px-4 py-20">
+        {/* Section Header */}
         <div className="text-center mb-12">
+          <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4">
+            <FileText className="h-8 w-8 text-teal-400" />
+          </div>
           <h1 className="text-4xl font-bold gradient-text mb-4">Problem Statements</h1>
           <p className="text-gray-300 text-lg max-w-3xl mx-auto">
             Choose from cutting-edge problem statements across various technological domains. Each challenge is designed to push the boundaries of innovation and create real-world impact.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-4 justify-center mb-12">
+        {/* Dynamic Search Bar */}
+        <div className="max-w-2xl mx-auto mb-10 relative">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search problem statements (e.g. AI, water, secure)..."
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setExpandedProblem(null); // Close expanded views to keep UI clean
+              }}
+              className="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-950/80 border border-teal-500/15 focus:border-teal-500 focus:outline-none text-white transition-all duration-300 shadow-lg backdrop-blur-sm"
+            />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-teal-400/60 h-5 w-5" />
+          </div>
+          {searchQuery && (
+            <p className="text-xs text-teal-400/80 mt-2 ml-2">
+              Found {totalFilteredCount} matching statements
+            </p>
+          )}
+        </div>
+
+        {/* Category Buttons */}
+        <div className="flex flex-wrap gap-3 justify-center mb-12">
           <button
-            onClick={() => setSelectedCategory(null)}
-            className={`glass-card px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-              selectedCategory === null ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white' : 'hover:bg-pink-500/20'
+            onClick={() => {
+              setSelectedCategory(null);
+              setExpandedProblem(null);
+            }}
+            className={`glass-card px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
+              selectedCategory === null 
+                ? 'bg-gradient-to-r from-teal-400 to-sky-400 text-gray-900 border-none' 
+                : 'hover:bg-teal-500/15 text-gray-300'
             }`}
           >
             All Categories ({Object.values(problemsByCategory).flat().length})
@@ -240,9 +300,14 @@ const ProblemStatementsContent: React.FC = () => {
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`glass-card px-6 py-3 rounded-lg font-medium transition-all duration-300  ${
-                selectedCategory === category ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white' : 'hover:bg-pink-500/20'
+              onClick={() => {
+                setSelectedCategory(category);
+                setExpandedProblem(null);
+              }}
+              className={`glass-card px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                selectedCategory === category 
+                  ? 'bg-gradient-to-r from-teal-400 to-sky-400 text-gray-900 border-none' 
+                  : 'hover:bg-teal-500/15 text-gray-300'
               }`}
             >
               {category} ({problemsByCategory[category].length})
@@ -250,44 +315,89 @@ const ProblemStatementsContent: React.FC = () => {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-6">
-          {(selectedCategory ? [selectedCategory] : categories).map((category) => (
-            <div key={category}>
-              <h2 className="text-xl font-bold text-pink-400 mb-4">{category}</h2>
-              {problemsByCategory[category].map((problem, index) => {
-                const globalIndex = selectedCategory
-                  ? index
-                  : Object.keys(problemsByCategory)
-                      .slice(0, categories.indexOf(category))
-                      .reduce((acc, cat) => acc + problemsByCategory[cat].length, 0) + index;
+        {/* Grid List */}
+        <motion.div layout className="space-y-8">
+          <AnimatePresence mode="popLayout">
+            {filteredData.length > 0 ? (
+              filteredData.map((group) => (
+                <motion.div
+                  key={group.category}
+                  layout
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  className="mb-8"
+                >
+                  <h2 className="text-xl font-bold text-teal-300 mb-4 border-l-4 border-teal-500 pl-3">
+                    {group.category}
+                  </h2>
+                  <div className="space-y-4">
+                    {group.problems.map((problem) => {
+                      const isExpanded = expandedProblem === problem.globalIdx;
 
-                return (
-                  <div
-                    key={globalIndex}
-                    className="glass-card p-6 rounded-lg group relative overflow-hidden transition-all duration-300 hover:shadow-lg mb-4"
-                  >
-                    <div
-                      className="cursor-pointer"
-                      onClick={() => toggleProblemExpansion(globalIndex)}
-                    >
-                      <h3 className="text-lg font-bold text-white group-hover:text-pink-400 transition-colors duration-300">
-                        {problem.title}
-                      </h3>
-                      <span className="text-gray-400 text-sm">
-                        {expandedProblem === globalIndex ? '−' : '+'}
-                      </span>
-                    </div>
-                    {expandedProblem === globalIndex && (
-                      <div className="mt-4 text-gray-300 text-md">
-                        <p>{problem.description}</p>
-                      </div>
-                    )}
+                      return (
+                        <motion.div
+                          key={problem.globalIdx}
+                          layout
+                          className={`glass-card p-5 rounded-xl transition-all duration-300 relative overflow-hidden border ${
+                            isExpanded ? 'border-teal-500/35 bg-teal-950/5' : 'border-teal-500/10'
+                          }`}
+                        >
+                          <div
+                            className="cursor-pointer flex items-center justify-between gap-4"
+                            onClick={() => toggleProblemExpansion(problem.globalIdx)}
+                          >
+                            <h3 className="text-md font-bold text-white group-hover:text-teal-400 transition-colors duration-300">
+                              {problem.title}
+                            </h3>
+                            <div className="bg-slate-950/40 p-1.5 rounded-full text-teal-400">
+                              {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                            </div>
+                          </div>
+                          
+                          <AnimatePresence initial={false}>
+                            {isExpanded && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                                animate={{ height: 'auto', opacity: 1, marginTop: 12 }}
+                                exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="overflow-hidden border-t border-teal-500/10 pt-3"
+                              >
+                                <p className="text-gray-300 text-sm leading-relaxed">
+                                  {problem.description}
+                                </p>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </motion.div>
+                      );
+                    })}
                   </div>
-                );
-              })}
-            </div>
-          ))}
-        </div>
+                </motion.div>
+              ))
+            ) : (
+              <motion.div
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center py-12 glass-card rounded-2xl max-w-md mx-auto"
+              >
+                <p className="text-gray-400">No problem statements match your search criteria.</p>
+                <button
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedCategory(null);
+                  }}
+                  className="mt-4 text-sm text-teal-400 font-bold hover:underline"
+                >
+                  Clear all filters
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </main>
     </div>
   );

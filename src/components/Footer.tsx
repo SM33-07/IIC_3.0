@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
                    />
 
               {/* Separator */}
-              <div className="w-px h-8 bg-gradient-to-b from-pink-400 to-cyan-400 opacity-50"></div>
+              <div className="w-px h-8 bg-gradient-to-b from-teal-400 to-sky-400 opacity-50"></div>
 
               {/* Hackathon Logo */}
               <Link to="/" className="flex items-center space-x-3">
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="glass-card hover:glass-card p-3 rounded-full transition-all duration-300"
               >
-                <Instagram className="h-5 w-5 text-pink-400"/>
+                <Instagram className="h-5 w-5 text-teal-400"/>
               </a>
               <a
                   href="https://www.linkedin.com/company/international-innovation-challenge-iic/"
@@ -48,15 +48,15 @@ const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="glass-card hover:glass-card p-3 rounded-full transition-all duration-300"
               >
-                <Linkedin className="h-5 w-5 text-cyan-400"/>
+                <Linkedin className="h-5 w-5 text-sky-400"/>
               </a>
               <a
-                  href="https://github.com/SS-9098/IIC-2.0"
+                  href="https://github.com/SS-9098/IIC-3.0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="glass-card hover:glass-card p-3 rounded-full transition-all duration-300"
               >
-                <Github className="h-5 w-5 text-purple-400"/>
+                <Github className="h-5 w-5 text-emerald-400"/>
               </a>
             </div>
           </div>
@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
           {/* Quick Links */}
           <div>
             <div className="flex items-center mb-6">
-              <Sparkles className="h-6 w-6 text-pink-400 mr-2"/>
+              <Sparkles className="h-6 w-6 text-teal-400 mr-2"/>
               <h3 className="text-white font-bold text-lg">Quick Links</h3>
             </div>
             <ul className="space-y-3">
@@ -78,9 +78,9 @@ const Footer: React.FC = () => {
                   <li key={index}>
                     <a
                         href={link.href}
-                        className="text-gray-300 hover:text-pink-400 transition-colors duration-300 flex items-center group"
+                        className="text-gray-300 hover:text-teal-400 transition-colors duration-300 flex items-center group"
                     >
-                      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-pink-400 to-cyan-400 mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-teal-400 to-sky-400 mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       {link.name}
                     </a>
                   </li>
@@ -93,20 +93,20 @@ const Footer: React.FC = () => {
             <h3 className="text-white font-bold text-lg mb-6">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <div className="bg-gradient-to-br from-pink-500/20 to-purple-600/20 p-2 rounded-lg mr-3 mt-0.5">
-                  <Phone className="h-5 w-5 text-pink-400" />
+                <div className="bg-gradient-to-br from-teal-500/20 to-emerald-600/20 p-2 rounded-lg mr-3 mt-0.5">
+                  <Phone className="h-5 w-5 text-teal-400" />
                 </div>
                 <span className="text-gray-300">Dr. GL Saini - 8890191811<br />Tanishk Mittal - 9728014818</span>
               </li>
               <li className="flex items-start">
-                <div className="bg-gradient-to-br from-cyan-500/20 to-blue-600/20 p-2 rounded-lg mr-3 mt-0.5">
-                  <Mail className="h-5 w-5 text-cyan-400" />
+                <div className="bg-gradient-to-br from-sky-500/20 to-teal-600/20 p-2 rounded-lg mr-3 mt-0.5">
+                  <Mail className="h-5 w-5 text-sky-400" />
                 </div>
                 <span className="text-gray-300">gaindi.saini@jaipur.manipal.edu<br />Tanishkmittal38@gmail.com</span>
               </li>
               <li className="flex items-start">
-                <div className="bg-gradient-to-br from-purple-500/20 to-pink-600/20 p-2 rounded-lg mr-3 mt-0.5">
-                  <MapPin className="h-5 w-5 text-purple-400" />
+                <div className="bg-gradient-to-br from-emerald-500/20 to-teal-600/20 p-2 rounded-lg mr-3 mt-0.5">
+                  <MapPin className="h-5 w-5 text-emerald-400" />
                 </div>
                 <span className="text-gray-300">
                   Manipal University Jaipur<br />
@@ -117,18 +117,18 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/*<div className="border-t border-pink-400/20 pt-8">
+        <div className="border-t border-teal-500/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              &copy; 2025 IIC 2.0. All rights reserved. Built with ❤️ for innovation.
+              &copy; 2026 IIC 3.0. All rights reserved. Built with ❤️ for innovation.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-pink-400 text-sm transition-colors duration-300">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-300">Terms of Service</a>
-              <a href="#" className="text-gray-400 hover:text-purple-400 text-sm transition-colors duration-300">Code of Conduct</a>
+              <a href="#" className="text-gray-400 hover:text-teal-400 text-sm transition-colors duration-300">Privacy Policy</a>
+              <a href="#" className="text-gray-400 hover:text-sky-400 text-sm transition-colors duration-300">Terms of Service</a>
+              <a href="#" className="text-gray-400 hover:text-emerald-400 text-sm transition-colors duration-300">Code of Conduct</a>
             </div>
           </div>
-        </div>*/}
+        </div>
       </div>
     </footer>
   );

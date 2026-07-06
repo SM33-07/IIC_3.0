@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Users } from "lucide-react";
+import { motion } from "framer-motion";
 
 const JudgesMentorsContent: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -90,31 +91,33 @@ const JudgesMentorsContent: React.FC = () => {
         {/* Judges Section */}
         <div className="animate-on-scroll opacity-0 mb-20">
           <div className="text-center mb-12">
-            <div className="inline-block p-3 bg-gradient-to-br from-pink-500/20 to-purple-600/20 rounded-full mb-4">
-              <Users className="h-8 w-8 text-pink-400" />
+            <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4">
+              <Users className="h-8 w-8 text-teal-400" />
             </div>
             <h3 className="text-3xl font-bold gradient-text mb-2">
               Meet the Judges and Mentors
             </h3>
-            <div className="w-16 h-0.5 bg-gradient-to-r from-pink-400 to-cyan-400 mx-auto"></div>
+            <div className="w-16 h-0.5 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto"></div>
           </div>
           {/* 2 Judges → 2 columns */}
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {judges.map((judge, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="glass-card rounded-xl p-6 group relative overflow-hidden text-center"
+                whileHover={{ y: -8, scale: 1.03, boxShadow: "0 15px 35px rgba(45, 212, 191, 0.15)" }}
+                transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                className="glass-card rounded-xl p-6 group relative overflow-hidden text-center cursor-pointer"
               >
                 <div className="flex items-center justify-center h-50 mb-4">
                   {judge.icon}
                 </div>
-                <h4 className="text-white font-bold text-lg mb-2 group-hover:text-pink-400 transition-colors duration-300">
+                <h4 className="text-white font-bold text-lg mb-2 group-hover:text-teal-400 transition-colors duration-300">
                   {judge.name}
                 </h4>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   {judge.designation}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

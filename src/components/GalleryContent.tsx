@@ -1,5 +1,6 @@
 import React, { useState } from 'react';  
 import { Camera, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const GalleryContent: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -86,63 +87,80 @@ const GalleryContent: React.FC = () => {
     <div className="min-h-screen space-bg">
       <main className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
-          <div className="inline-block p-3 bg-gradient-to-br from-pink-500/20 to-purple-600/20 rounded-full mb-4">
-            <Camera className="h-8 w-8 text-pink-400" />
+          <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4 animate-on-scroll">
+            <Camera className="h-8 w-8 text-teal-400" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             <span className="gradient-text">Event Gallery</span>
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-pink-400 to-cyan-400 mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto mb-6"></div>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Relive the moments from previous IIC events. Browse through our collection of memories and achievements.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div 
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {images.map((image, index) => (
-            <div
+            <motion.div
+              layout
               key={index}
               className="group relative overflow-hidden rounded-xl cursor-pointer glass-card hover:glass-card transition-all duration-300"
+              whileHover={{ y: -6, scale: 1.02 }}
               onClick={() => setSelectedImage(image.url)}
             >
               <img
                 src={image.url}
                 alt={image.title}
-                className="w-full h-64 object-cover transform transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-64 object-cover transform transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                 <h3 className="text-white font-bold text-xl gradient-text">{image.title}</h3>
                 <p className="text-gray-300">{image.year}</p>
               </div>
               <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="bg-gradient-to-br from-pink-500/20 to-purple-600/20 p-2 rounded-full backdrop-blur-sm">
-                  <Camera className="h-5 w-5 text-pink-400" />
+                <div className="bg-gradient-to-br from-teal-500/20 to-emerald-600/20 p-2 rounded-full backdrop-blur-sm">
+                  <Camera className="h-5 w-5 text-teal-400" />
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {selectedImage && (
-          <div
-            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 backdrop-blur-sm"
-            onClick={() => setSelectedImage(null)}
-          >
-            <div className="relative max-w-4xl w-full">
-              <img
-                src={selectedImage}
-                alt="Selected"
-                className="w-full h-auto rounded-lg shadow-2xl"
-              />
-              <button
-                className="absolute top-4 right-4 glass-card p-2 rounded-full text-white hover:text-pink-400 transition-colors duration-300"
-                onClick={() => setSelectedImage(null)}
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4 backdrop-blur-md"
+              onClick={() => setSelectedImage(null)}
+            >
+              <motion.div 
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                className="relative max-w-4xl w-full"
+                onClick={(e) => e.stopPropagation()}
               >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-          </div>
-        )}
+                <img
+                  src={selectedImage}
+                  alt="Selected"
+                  className="w-full h-auto max-h-[85vh] object-contain rounded-xl shadow-2xl border border-teal-500/20"
+                />
+                <button
+                  className="absolute top-4 right-4 glass-card p-2 rounded-full text-white hover:text-teal-400 hover:scale-105 transition-all duration-300"
+                  onClick={() => setSelectedImage(null)}
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
     </div>
   );

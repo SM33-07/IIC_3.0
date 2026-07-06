@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface FAQItem {
   question: string;
@@ -83,15 +84,15 @@ const FAQ: React.FC = () => {
     <section id="faq" ref={sectionRef} className="py-20 space-bg">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <div className="inline-block p-3 bg-gradient-to-br from-pink-500/20 to-purple-600/20 rounded-full mb-4 animate-on-scroll opacity-0">
-            <HelpCircle className="h-8 w-8 text-pink-400" />
+          <div className="inline-block p-3 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-full mb-4 animate-on-scroll opacity-0">
+            <HelpCircle className="h-8 w-8 text-teal-400" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-on-scroll opacity-0">
             Frequently Asked <span className="gradient-text">Questions</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-pink-400 to-cyan-400 mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-sky-400 mx-auto mb-6"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-on-scroll opacity-0">
-            Find answers to common questions about IIC 2.0. If you don't see your question here, feel free to contact us.
+            Find answers to common questions about IIC 3.0. If you don't see your question here, feel free to contact us.
           </p>
         </div>
 
@@ -99,7 +100,7 @@ const FAQ: React.FC = () => {
           {faqItems.map((item, index) => (
             <div
               key={index}
-              className={`mb-4 glass-card rounded-lg overflow-hidden transition-all duration-300 animate-on-scroll opacity-0`}
+              className={`mb-4 glass-card rounded-lg overflow-hidden animate-on-scroll opacity-0`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <button
@@ -107,21 +108,32 @@ const FAQ: React.FC = () => {
                 onClick={() => toggleQuestion(index)}
               >
                 <span className="text-white font-medium text-lg">{item.question}</span>
-                <div className="bg-gradient-to-br from-pink-500/20 to-purple-600/20 p-2 rounded-full">
+                <div className="bg-gradient-to-br from-teal-500/20 to-emerald-600/20 p-2 rounded-full">
                   {openIndex === index ? (
-                    <ChevronUp className="h-5 w-5 text-pink-400" />
+                    <ChevronUp className="h-5 w-5 text-teal-400" />
                   ) : (
-                    <ChevronDown className="h-5 w-5 text-pink-400" />
+                    <ChevronDown className="h-5 w-5 text-teal-400" />
                   )}
                 </div>
               </button>
-              <div
-                className={`px-6 overflow-hidden transition-all duration-300 ${
-                  openIndex === index ? 'max-h-96 pb-4' : 'max-h-0'
-                }`}
-              >
-                <p className="text-gray-300 text-lg leading-relaxed">{item.answer}</p>
-              </div>
+              <AnimatePresence initial={false}>
+                {openIndex === index && (
+                  <motion.div
+                    initial="collapsed"
+                    animate="open"
+                    exit="collapsed"
+                    variants={{
+                      open: { opacity: 1, height: "auto" },
+                      collapsed: { opacity: 0, height: 0 }
+                    }}
+                    transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                  >
+                    <div className="px-6 pb-4 border-t border-teal-500/10 pt-4">
+                      <p className="text-gray-300 text-lg leading-relaxed">{item.answer}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
         </div>
@@ -136,7 +148,7 @@ const FAQ: React.FC = () => {
             if (isMobile) {
             window.location.href = 'tel:+919728014818';
             } else {
-            window.location.href = 'mailto:Tanishkmittal38@gmail.com?subject=Inquiry about IIC 2.0';
+            window.location.href = 'mailto:Tanishkmittal38@gmail.com?subject=Inquiry about IIC 3.0';
             }
           }}
           >

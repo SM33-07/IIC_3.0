@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
-        isScrolled ? 'glass-card h-0 overflow-hidden' : 'bg-transparent py-4'
+        isScrolled ? 'glass-card py-2 border-b border-teal-500/25 shadow-lg backdrop-blur-md' : 'bg-transparent py-4'
       }`}
     >
       <div className="container mx-auto px-4 md:px-6">
@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
             </Link>
 
             {/* Separator */}
-            <div className="w-px h-8 bg-gradient-to-b from-pink-400 to-cyan-400 opacity-50"></div>
+            <div className="w-px h-8 bg-gradient-to-b from-teal-400 to-sky-400 opacity-50"></div>
 
             {/* Hackathon Logo */}
             <Link to="/" className="flex items-center space-x-3">
@@ -79,16 +79,16 @@ const Navbar: React.FC = () => {
                 <button
                     key={item.name}
                     onClick={() => handleNavClick(item.path)}
-                    className="text-gray-300 hover:text-pink-400 transition-colors duration-300 font-medium relative group"
+                    className="text-gray-300 hover:text-teal-400 transition-colors duration-300 font-medium relative group"
                 >
                   {item.name}
                   <span
-                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-400 to-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-teal-400 to-sky-400 transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
             <button
               onClick={() => window.open('https://unstop.com/hackathons/international-innovation-challenge-20-manipal-university-mu-jaipur-1527559', '_blank')}
-              className="modern-button neon-button px-6 py-2 rounded-md font-medium transition-all duration-300 shadow-md"
+              className="modern-button neon-button px-6 py-2 rounded-md font-medium transition-all duration-300 shadow-md animate-pulse"
             >
               <Zap size={16} className="inline mr-1" />
               Submit
@@ -111,7 +111,7 @@ const Navbar: React.FC = () => {
               <button
                 key={item.name}
                 onClick={() => handleNavClick(item.path)}
-                className="block w-full text-left py-3 text-gray-300 hover:text-pink-400 transition-colors duration-300 font-medium"
+                className="block w-full text-left py-3 text-gray-300 hover:text-teal-400 transition-colors duration-300 font-medium"
               >
                 {item.name}
               </button>
