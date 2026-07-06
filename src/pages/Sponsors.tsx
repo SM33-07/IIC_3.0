@@ -10,7 +10,7 @@ const Sponsors: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a1931] relative">
+    <div className="min-h-screen relative">
       <GlowingParticles />
       <Navbar />
       <SponsorsContent />
