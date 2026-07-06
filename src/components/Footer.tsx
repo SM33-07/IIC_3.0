@@ -13,8 +13,8 @@ const Footer: React.FC = () => {
             {/* Logos Section */}
             <div className="flex items-center space-x-4 mb-4">
               {/* College Logo*/}
-              <img id="logo" role="button" alt="MUJ-Logo.png"
-                   src="/muj-logo.png" width="120"
+              <img id="logo" role="button" alt="MUJ-Logo.webp"
+                   src="/muj-logo.webp" width="120"
                    />
 
               {/* Separator */}
@@ -23,8 +23,8 @@ const Footer: React.FC = () => {
               {/* Hackathon Logo */}
               <Link to="/" className="flex items-center space-x-3">
 
-                <img id="logo" role="button" alt="MUJ-Logo.png"
-                     src="/iic-logo.png" width="120"/>
+                <img id="logo" role="button" alt="MUJ-Logo.webp"
+                     src="/iic-logo.webp" width="120"/>
 
               </Link>
             </div>

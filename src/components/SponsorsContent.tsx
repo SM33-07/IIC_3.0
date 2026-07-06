@@ -28,7 +28,7 @@ const SponsorsContent: React.FC = () => {
 
   const coPoweredItems: ChromaItem[] = [
     {
-      image: '/unstop.png',
+      image: '/unstop.webp',
       title: 'Unstop',
       subtitle: 'Co-Powered By',
       borderColor: '#2dd4bf',
@@ -40,7 +40,7 @@ const SponsorsContent: React.FC = () => {
 
   const sponsorItems: ChromaItem[] = [
     {
-      image: '/geeksforgeeks.png',
+      image: '/geeksforgeeks.webp',
       title: 'GeekforGeeks',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
@@ -49,7 +49,7 @@ const SponsorsContent: React.FC = () => {
       url: 'https://www.geeksforgeeks.org/'
     },
     {
-      image: '/doic.png',
+      image: '/doic.webp',
       title: 'DoIC MUJ',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
@@ -57,7 +57,7 @@ const SponsorsContent: React.FC = () => {
       isLogo: true
     },
     {
-      image: '/mlhealth360.jpeg',
+      image: '/mlhealth360.webp',
       title: 'mlHealth360',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
@@ -65,7 +65,7 @@ const SponsorsContent: React.FC = () => {
       isLogo: true
     },
     {
-      image: '/eCell.jpeg',
+      image: '/eCell.webp',
       title: 'E-Cell',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
@@ -73,7 +73,7 @@ const SponsorsContent: React.FC = () => {
       isLogo: true
     },
     {
-      image: '/aic.jpeg',
+      image: '/aic.webp',
       title: 'AIC MUJ',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
@@ -81,7 +81,7 @@ const SponsorsContent: React.FC = () => {
       isLogo: true
     },
     {
-      image: '/tuf.png',
+      image: '/tuf.webp',
       title: 'TUF',
       subtitle: 'Sponsor',
       borderColor: '#f59e0b',
@@ -92,7 +92,7 @@ const SponsorsContent: React.FC = () => {
 
   const problemStatementItems: ChromaItem[] = [
     {
-      image: '/isro.jpg',
+      image: '/isro.webp',
       title: 'ISRO',
       subtitle: 'Problem Statements By',
       borderColor: '#3b82f6',
@@ -109,7 +109,7 @@ const SponsorsContent: React.FC = () => {
       isLogo: true
     },
     {
-      image: '/talsmart.jpg',
+      image: '/talsmart.webp',
       title: 'Talsmart',
       subtitle: 'Problem Statements By',
       borderColor: '#3b82f6',
@@ -125,7 +125,7 @@ const SponsorsContent: React.FC = () => {
       isLogo: true
     },
     {
-      image: '/rgHospitals.jpeg',
+      image: '/rgHospitals.webp',
       title: 'RG Hospitals',
       subtitle: 'Problem Statements By',
       borderColor: '#3b82f6',
@@ -133,7 +133,7 @@ const SponsorsContent: React.FC = () => {
       isLogo: true
     },
     {
-      image: '/drdo.png',
+      image: '/drdo.webp',
       title: 'DRDO',
       subtitle: 'Problem Statements By',
       borderColor: '#3b82f6',

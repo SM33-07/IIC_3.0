@@ -80,8 +80,8 @@ const IntroWrapper: React.FC = () => {
               {glitchText}
             </h1>*/}
 
-            <img id="logo" role="button" alt="IIC-Logo.png"
-                 src="/iic-logo.png" width="700"
+            <img id="logo" role="button" alt="IIC-Logo.webp"
+                 src="/iic-logo.webp" width="700"
             />
 
             <div

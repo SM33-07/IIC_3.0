@@ -29,7 +29,7 @@ const JudgesMentorsContent: React.FC = () => {
 
   const members: ChromaItem[] = [
     {
-      image: "/judge1.png",
+      image: "/judge1.webp",
       title: "Kushal Vijay",
       subtitle: "Software Engineer, Microsoft",
       borderColor: "#3b82f6",
@@ -39,7 +39,7 @@ const JudgesMentorsContent: React.FC = () => {
       instagram: "https://instagram.com/kushalvijay"
     },
     {
-      image: "/judge2.png",
+      image: "/judge2.webp",
       title: "Swati Maurya",
       subtitle: "Software Engineer, Amazon",
       borderColor: "#10b981",
@@ -49,7 +49,7 @@ const JudgesMentorsContent: React.FC = () => {
       instagram: "https://instagram.com"
     },
     {
-      image: "/mentor1.png",
+      image: "/mentor1.webp",
       title: "Aditi Gupta",
       subtitle: "CEO, TechTip24",
       borderColor: "#f59e0b",
@@ -59,7 +59,7 @@ const JudgesMentorsContent: React.FC = () => {
       instagram: "https://instagram.com"
     },
     {
-      image: "/mentor2.png",
+      image: "/mentor2.webp",
       title: "Bhagirath Giri",
       subtitle: "Director, WsCube Tech",
       borderColor: "#ef4444",
@@ -69,7 +69,7 @@ const JudgesMentorsContent: React.FC = () => {
       instagram: "https://instagram.com"
     },
     {
-      image: "/mentor3.png",
+      image: "/mentor3.webp",
       title: "Sonam Chhikara",
       subtitle: "Associate, PwC Acceleration Centers",
       borderColor: "#8b5cf6",

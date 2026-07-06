@@ -13,80 +13,80 @@ const GalleryContent: React.FC = () => {
   // Present IIC (2024 Edition) images
   const iicImages = [
     {
-      url: "/20241115_101932.jpg",
+      url: "/20241115_101932.webp",
       title: "Inauguration",
       year: "2024",
       featured: true
     },
     {
-      url: "/20241115_224002.jpg",
+      url: "/20241115_224002.webp",
       title: "Coding Session",
       year: "2024"
     },
     {
-      url: "/20241115_224201.jpg",
+      url: "/20241115_224201.webp",
       title: "Mentorship Support",
       year: "2024"
     },
     {
-      url: "/20241116_122330.jpg",
+      url: "/20241116_122330.webp",
       title: "Hackathon Day",
       year: "2024"
     },
     {
-      url: "/IMG_0001.jpeg",
+      url: "/IMG_0001.webp",
       title: "Presentations",
       year: "2024"
     },
     {
-      url: "/IMG_1930.JPG",
+      url: "/IMG_1930.webp",
       title: "Evaluation Round",
       year: "2024",
       featured: true
     },
     {
-      url: "/IMG_2016.JPG",
+      url: "/IMG_2016.webp",
       title: "Main Stage",
       year: "2024"
     },
     {
-      url: "/IMG_2025.JPG",
+      url: "/IMG_2025.webp",
       title: "Winning Teams",
       year: "2024"
     },
     {
-      url: "/IMG_2028.JPG",
+      url: "/IMG_2028.webp",
       title: "Project Pitch",
       year: "2024"
     },
     {
-      url: "/IMG_2038.JPG",
+      url: "/IMG_2038.webp",
       title: "Jury Discussion",
       year: "2024"
     },
     {
-      url: "/IMG_2094.JPG",
+      url: "/IMG_2094.webp",
       title: "Organizers & Teams",
       year: "2024",
       featured: true
     },
     {
-      url: "/IMG_2121.JPG",
+      url: "/IMG_2121.webp",
       title: "Valedictory Stage",
       year: "2024"
     },
     {
-      url: "/IMG_20241116_015025_570.jpg",
+      url: "/IMG_20241116_015025_570.webp",
       title: "Team Collaboration",
       year: "2024"
     },
     {
-      url: "/IMG20241115230723.jpg",
+      url: "/IMG20241115230723.webp",
       title: "Development Phase",
       year: "2024"
     },
     {
-      url: "/IMG_0004.jpeg",
+      url: "/IMG_0004.webp",
       title: "Audience Presentation",
       year: "2024"
     }
@@ -94,38 +94,38 @@ const GalleryContent: React.FC = () => {
 
   // New IIC 2.0 (2025 Edition) images
   const iic2Images = [
-    { url: "/iic2/DSC00721.jpg", title: "Registration & Welcome", year: "2025", featured: true },
-    { url: "/iic2/DSC00788.jpg", title: "Mentorship Session", year: "2025" },
-    { url: "/iic2/DSC00802.jpg", title: "Panel Discussion", year: "2025", featured: true },
-    { url: "/iic2/DSC00840.jpg", title: "Audience Q&A", year: "2025" },
-    { url: "/iic2/DSC00964.jpg", title: "Technical Mentorship", year: "2025" },
-    { url: "/iic2/DSC01091.jpg", title: "Grand Ceremony Stage", year: "2025" },
-    { url: "/iic2/DSC01098.jpg", title: "Expert Support", year: "2025" },
-    { url: "/iic2/DSC01115.jpg", title: "Main Event Presentations", year: "2025", featured: true },
-    { url: "/iic2/DSC01205.jpg", title: "Jury Judgements", year: "2025" },
-    { url: "/iic2/DSC01568.jpg", title: "Pitching Round", year: "2025" },
-    { url: "/iic2/DSC01786.jpg", title: "Working Prototypes", year: "2025" },
-    { url: "/iic2/DSC01802.jpg", title: "Closing Addresses", year: "2025" },
-    { url: "/iic2/DSC01941.jpg", title: "Award Distribution", year: "2025" },
-    { url: "/iic2/DSC02007.jpg", title: "Winners Group", year: "2025" },
-    { url: "/iic2/DSC02050.jpg", title: "Hackathon Dev Work", year: "2025" },
-    { url: "/iic2/DSC02071.jpg", title: "Inaugural Addresses", year: "2025" },
-    { url: "/iic2/DSC09525.jpg", title: "Valedictory Highlights", year: "2025", featured: true },
-    { url: "/iic2/DSC09541.jpg", title: "Team Pitching", year: "2025" },
-    { url: "/iic2/DSC09548.jpg", title: "Jury Discussion", year: "2025" },
-    { url: "/iic2/DSC09567.jpg", title: "Speaker Keynote", year: "2025" },
-    { url: "/iic2/DSC09571.jpg", title: "Mentors Connect", year: "2025" },
-    { url: "/iic2/DSC09580.jpg", title: "Innovative Prototypes", year: "2025" },
-    { url: "/iic2/HTP09710.jpg", title: "Inauguration Lights", year: "2025", featured: true },
-    { url: "/iic2/HTP09730.jpg", title: "Lamp Lighting Ceremony", year: "2025" },
-    { url: "/iic2/IMG_0004-Enhanced-NR.jpg", title: "Development Phase", year: "2025" },
-    { url: "/iic2/IMG_0006-Enhanced-NR.jpg", title: "Team Collaboration", year: "2025" },
-    { url: "/iic2/IMG_0009-Enhanced-NR.jpg", title: "Prototype Testing", year: "2025" },
-    { url: "/iic2/IMG_0015-Enhanced-NR.jpg", title: "Jury Evaluation", year: "2025" },
-    { url: "/iic2/IMG_9769-Enhanced-NR.jpg", title: "Registration Desk", year: "2025" },
-    { url: "/iic2/IMG_9864-Enhanced-NR.jpg", title: "Hackathon Start", year: "2025" },
-    { url: "/iic2/IMG_9872-Enhanced-NR.jpg", title: "Coding Session 2.0", year: "2025" },
-    { url: "/iic2/IMG_9997-Enhanced-NR.jpg", title: "Winner Celebrations", year: "2025", featured: true }
+    { url: "/iic2/DSC00721.webp", title: "Registration & Welcome", year: "2025", featured: true },
+    { url: "/iic2/DSC00788.webp", title: "Mentorship Session", year: "2025" },
+    { url: "/iic2/DSC00802.webp", title: "Panel Discussion", year: "2025", featured: true },
+    { url: "/iic2/DSC00840.webp", title: "Audience Q&A", year: "2025" },
+    { url: "/iic2/DSC00964.webp", title: "Technical Mentorship", year: "2025" },
+    { url: "/iic2/DSC01091.webp", title: "Grand Ceremony Stage", year: "2025" },
+    { url: "/iic2/DSC01098.webp", title: "Expert Support", year: "2025" },
+    { url: "/iic2/DSC01115.webp", title: "Main Event Presentations", year: "2025", featured: true },
+    { url: "/iic2/DSC01205.webp", title: "Jury Judgements", year: "2025" },
+    { url: "/iic2/DSC01568.webp", title: "Pitching Round", year: "2025" },
+    { url: "/iic2/DSC01786.webp", title: "Working Prototypes", year: "2025" },
+    { url: "/iic2/DSC01802.webp", title: "Closing Addresses", year: "2025" },
+    { url: "/iic2/DSC01941.webp", title: "Award Distribution", year: "2025" },
+    { url: "/iic2/DSC02007.webp", title: "Winners Group", year: "2025" },
+    { url: "/iic2/DSC02050.webp", title: "Hackathon Dev Work", year: "2025" },
+    { url: "/iic2/DSC02071.webp", title: "Inaugural Addresses", year: "2025" },
+    { url: "/iic2/DSC09525.webp", title: "Valedictory Highlights", year: "2025", featured: true },
+    { url: "/iic2/DSC09541.webp", title: "Team Pitching", year: "2025" },
+    { url: "/iic2/DSC09548.webp", title: "Jury Discussion", year: "2025" },
+    { url: "/iic2/DSC09567.webp", title: "Speaker Keynote", year: "2025" },
+    { url: "/iic2/DSC09571.webp", title: "Mentors Connect", year: "2025" },
+    { url: "/iic2/DSC09580.webp", title: "Innovative Prototypes", year: "2025" },
+    { url: "/iic2/HTP09710.webp", title: "Inauguration Lights", year: "2025", featured: true },
+    { url: "/iic2/HTP09730.webp", title: "Lamp Lighting Ceremony", year: "2025" },
+    { url: "/iic2/IMG_0004-Enhanced-NR.webp", title: "Development Phase", year: "2025" },
+    { url: "/iic2/IMG_0006-Enhanced-NR.webp", title: "Team Collaboration", year: "2025" },
+    { url: "/iic2/IMG_0009-Enhanced-NR.webp", title: "Prototype Testing", year: "2025" },
+    { url: "/iic2/IMG_0015-Enhanced-NR.webp", title: "Jury Evaluation", year: "2025" },
+    { url: "/iic2/IMG_9769-Enhanced-NR.webp", title: "Registration Desk", year: "2025" },
+    { url: "/iic2/IMG_9864-Enhanced-NR.webp", title: "Hackathon Start", year: "2025" },
+    { url: "/iic2/IMG_9872-Enhanced-NR.webp", title: "Coding Session 2.0", year: "2025" },
+    { url: "/iic2/IMG_9997-Enhanced-NR.webp", title: "Winner Celebrations", year: "2025", featured: true }
   ];
 
   // IIC 2.0 Highlights for Carousel
@@ -134,35 +134,35 @@ const GalleryContent: React.FC = () => {
       id: 1,
       title: "Registration & Welcome",
       description: "Getting ready for IIC 2.0.",
-      image: "/iic2/DSC00721.jpg",
+      image: "/iic2/DSC00721.webp",
       icon: <Layers className="h-4 w-4 text-teal-400" />
     },
     {
       id: 2,
       title: "Interactive Discussion",
       description: "Audience asking questions during the panels.",
-      image: "/iic2/DSC00802.jpg",
+      image: "/iic2/DSC00802.webp",
       icon: <Layout className="h-4 w-4 text-teal-400" />
     },
     {
       id: 3,
       title: "Main Stage Presentation",
       description: "Showcasing projects to the panel of judges.",
-      image: "/iic2/DSC01115.jpg",
+      image: "/iic2/DSC01115.webp",
       icon: <Circle className="h-4 w-4 text-teal-400" />
     },
     {
       id: 4,
       title: "Closing Ceremonies",
       description: "Distribution of awards to the hackathon winners.",
-      image: "/iic2/DSC01941.jpg",
+      image: "/iic2/DSC01941.webp",
       icon: <FileText className="h-4 w-4 text-teal-400" />
     },
     {
       id: 5,
       title: "Worthy Winners",
       description: "Outstanding teams celebrating their victory.",
-      image: "/iic2/DSC02007.jpg",
+      image: "/iic2/DSC02007.webp",
       icon: <Code className="h-4 w-4 text-teal-400" />
     }
   ];
@@ -173,35 +173,35 @@ const GalleryContent: React.FC = () => {
       id: 1,
       title: "IIC Inauguration",
       description: "Lighting the ceremonial lamp to kick off the event.",
-      image: "/20241115_101932.jpg",
+      image: "/20241115_101932.webp",
       icon: <Layers className="h-4 w-4 text-teal-400" />
     },
     {
       id: 2,
       title: "Night Hackathon Phase",
       description: "Working relentlessly through the midnight coding hours.",
-      image: "/20241115_224002.jpg",
+      image: "/20241115_224002.webp",
       icon: <Code className="h-4 w-4 text-teal-400" />
     },
     {
       id: 3,
       title: "Expert Mentorship",
       description: "Mentors checking progress and giving strategies.",
-      image: "/20241115_224201.jpg",
+      image: "/20241115_224201.webp",
       icon: <Layout className="h-4 w-4 text-teal-400" />
     },
     {
       id: 4,
       title: "Jury Judgements",
       description: "Mentors evaluating solutions at the work desks.",
-      image: "/IMG_1930.JPG",
+      image: "/IMG_1930.webp",
       icon: <Circle className="h-4 w-4 text-teal-400" />
     },
     {
       id: 5,
       title: "Core Teams Group",
       description: "Celebrating the hard work of all participants.",
-      image: "/IMG_2025.JPG",
+      image: "/IMG_2025.webp",
       icon: <FileText className="h-4 w-4 text-teal-400" />
     }
   ];

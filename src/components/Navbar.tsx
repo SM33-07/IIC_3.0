@@ -58,8 +58,8 @@ const Navbar: React.FC = () => {
           <div className="flex items-center space-x-4">
             {/* College Logo Placeholder */}
             <Link to="/" className="flex items-center space-x-3">
-              <img id="logo" role="button" alt="MUJ-Logo.png"
-                  src="/muj-logo.png" width="140"
+              <img id="logo" role="button" alt="MUJ-Logo.webp"
+                  src="/muj-logo.webp" width="140"
               />
             </Link>
 
@@ -68,8 +68,8 @@ const Navbar: React.FC = () => {
 
             {/* Hackathon Logo */}
             <Link to="/" className="flex items-center space-x-3">
-              <img id="logo" role="button" alt="IIC-Logo.png"
-                   src="/iic-logo.png" width="100"
+              <img id="logo" role="button" alt="IIC-Logo.webp"
+                   src="/iic-logo.webp" width="100"
               />
             </Link>
           </div>
